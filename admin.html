@@ -789,6 +789,12 @@
         await writable.close();
     }
 
+    async function readFileFromDir(dirHandle, fileName) {
+        const fileHandle = await dirHandle.getFileHandle(fileName);
+        const file = await fileHandle.getFile();
+        return await file.text();
+    }
+
     function excelDateToStr(serial) {
         // Excel serial date → DD/MM/YYYY
         if (typeof serial === 'string') return serial;
@@ -982,10 +988,26 @@
             // Read current 1st_updated.html
             let html;
             const isElectron = window.appInfo && window.appInfo.isElectron;
-            if (isElectron && window.electronAPI) {
+
+            // METHOD A: Read from linked local folder (File System Access API)
+            if (!isElectron && projectDirHandle) {
+                try {
+                    log('Reading 1st_updated.html from linked project folder...', 'info');
+                    html = await readFileFromDir(projectDirHandle, '1st_updated.html');
+                    log('Template loaded from disk! (' + (html.length / 1024).toFixed(0) + ' KB)', 'ok');
+                } catch(readErr) {
+                    log('Could not read from folder: ' + readErr.message + '. Falling back to fetch...', 'warn');
+                }
+            }
+
+            // METHOD B: Electron native read
+            if (!html && isElectron && window.electronAPI) {
                 log('Running in Electron, reading template directly...', 'info');
                 html = await window.electronAPI.readFile('1st_updated.html');
-            } else {
+            }
+
+            // METHOD C: HTTP fetch (local server or GitHub)
+            if (!html) {
                 log('Reading template page via fetch...', 'info');
                 try {
                     const response = await fetch('1st_updated.html');
@@ -997,7 +1019,7 @@
                         const response = await fetch('https://raw.githubusercontent.com/Amith1994/GKMS_Karnataka/main/1st_updated.html');
                         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                         html = await response.text();
-                        log('Template page loaded successfully from GitHub!', 'ok');
+                        log('Template page loaded from GitHub!', 'ok');
                     } catch (githubErr) {
                         log('Failed to fetch template from GitHub. Please select it manually.', 'warn');
                         html = await promptForTemplateFile('1st_updated.html');
@@ -1066,10 +1088,26 @@
 
             // ────────── UPDATE index.html (the Map Dashboard) ──────────
             let indexHtml;
-            if (isElectron && window.electronAPI) {
+
+            // METHOD A: Read from linked local folder
+            if (!isElectron && projectDirHandle) {
+                try {
+                    log('Reading index.html from linked project folder...', 'info');
+                    indexHtml = await readFileFromDir(projectDirHandle, 'index.html');
+                    log('index.html loaded from disk! (' + (indexHtml.length / 1024).toFixed(0) + ' KB)', 'ok');
+                } catch(readErr) {
+                    log('Could not read index.html from folder: ' + readErr.message + '. Falling back to fetch...', 'warn');
+                }
+            }
+
+            // METHOD B: Electron native read
+            if (!indexHtml && isElectron && window.electronAPI) {
                 log('Running in Electron, reading index.html directly...', 'info');
                 indexHtml = await window.electronAPI.readFile('index.html');
-            } else {
+            }
+
+            // METHOD C: HTTP fetch
+            if (!indexHtml) {
                 log('Reading index.html template page via fetch...', 'info');
                 try {
                     const response = await fetch('index.html');
@@ -1081,7 +1119,7 @@
                         const response = await fetch('https://raw.githubusercontent.com/Amith1994/GKMS_Karnataka/main/index.html');
                         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                         indexHtml = await response.text();
-                        log('index.html template loaded successfully from GitHub!', 'ok');
+                        log('index.html template loaded from GitHub!', 'ok');
                     } catch (githubErr) {
                         log('Failed to fetch index.html from GitHub. Please select it manually.', 'warn');
                         indexHtml = await promptForTemplateFile('index.html');
