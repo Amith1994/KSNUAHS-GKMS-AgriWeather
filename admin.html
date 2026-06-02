@@ -533,6 +533,20 @@
             </table>
         </details>
 
+        <!-- GitHub Auto-Publish Settings (web only) -->
+        <div class="format-guide" id="githubSettings" style="display:none; margin-top: 1rem;">
+            <div style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:700;color:var(--primary);margin-bottom:0.5rem;">🔑 GitHub Auto-Publish Settings</div>
+            <div style="font-size:0.78rem; color:var(--text-muted); line-height:1.5;">
+                <p style="margin-bottom:0.75rem;">To commit and push updates directly to GitHub from the browser (no manual downloads needed), please enter your GitHub Personal Access Token (PAT) with <code>repo</code> permissions.</p>
+                <div style="display:flex; gap:0.5rem; flex-wrap:wrap; align-items:center;">
+                    <input type="password" id="githubToken" class="login-input" style="flex:1; min-width:200px; padding:0.5rem 0.8rem; font-size:0.8rem; height:36px; margin:0;" placeholder="ghp_...">
+                    <button class="login-btn" style="width:auto; padding:0 1rem; font-size:0.8rem; height:36px;" onclick="saveGithubToken()">Save Token</button>
+                    <button class="login-btn" style="width:auto; padding:0 1rem; font-size:0.8rem; height:36px; background:var(--danger);" onclick="clearGithubToken()">Clear</button>
+                </div>
+                <div id="githubTokenStatus" style="margin-top:0.5rem; font-family:'IBM Plex Mono',monospace; color:var(--success); font-weight:600; display:none;">Token saved!</div>
+            </div>
+        </div>
+
         <!-- Upload Zone -->
         <div class="upload-zone" id="uploadZone" onclick="document.getElementById('fileInput').click()">
             <span class="upload-zone-icon">📁</span>
@@ -597,11 +611,115 @@
             document.getElementById('loginScreen').style.display = 'none';
             document.getElementById('adminDashboard').classList.add('active');
             errEl.style.display = 'none';
+            
+            // Show GitHub settings if on web
+            if (!window.appInfo || !window.appInfo.isElectron) {
+                const ghSettings = document.getElementById('githubSettings');
+                if (ghSettings) ghSettings.style.display = 'block';
+                loadGithubToken();
+            }
         } else {
             errEl.style.display = 'block';
             document.getElementById('passwordInput').value = '';
             document.getElementById('passwordInput').focus();
         }
+    }
+
+    // GitHub settings management
+    function saveGithubToken() {
+        const token = document.getElementById('githubToken').value.trim();
+        if (token) {
+            localStorage.setItem('ghms_github_token', token);
+            const status = document.getElementById('githubTokenStatus');
+            status.style.display = 'block';
+            status.textContent = '✅ Token saved!';
+            log('GitHub token saved successfully.', 'ok');
+        }
+    }
+    
+    function clearGithubToken() {
+        localStorage.removeItem('ghms_github_token');
+        document.getElementById('githubToken').value = '';
+        const status = document.getElementById('githubTokenStatus');
+        status.style.display = 'block';
+        status.textContent = '❌ Token cleared!';
+        log('GitHub token cleared.', 'info');
+    }
+    
+    function loadGithubToken() {
+        const token = localStorage.getItem('ghms_github_token');
+        if (token) {
+            document.getElementById('githubToken').value = token;
+            const status = document.getElementById('githubTokenStatus');
+            status.style.display = 'block';
+            status.textContent = '🔑 Token loaded from storage';
+        }
+    }
+
+    // Safe Base64 UTF-8 Encoders / Decoders
+    function encodeBase64UTF8(str) {
+        return btoa(
+            encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, (match, p1) =>
+                String.fromCharCode(parseInt(p1, 16))
+            )
+        );
+    }
+    
+    function decodeBase64UTF8(str) {
+        return decodeURIComponent(
+            atob(str.replace(/\s/g, ''))
+                .split('')
+                .map(c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2))
+                .join('')
+        );
+    }
+
+    async function updateGithubFile(repo, filepath, content, token) {
+        log(`Fetching metadata for ${filepath} from GitHub...`, 'info');
+        const url = `https://api.github.com/repos/${repo}/contents/${filepath}`;
+        
+        let sha = null;
+        try {
+            const getRes = await fetch(url, {
+                headers: {
+                    'Authorization': `token ${token}`,
+                    'Accept': 'application/vnd.github.v3+json'
+                }
+            });
+            if (getRes.status === 200) {
+                const getJson = await getRes.json();
+                sha = getJson.sha;
+            } else if (getRes.status !== 404) {
+                throw new Error(`Failed to fetch file metadata. Status: ${getRes.status}`);
+            }
+        } catch (err) {
+            throw new Error(`Failed to check existing file on GitHub: ${err.message}`);
+        }
+        
+        log(`Committing updated ${filepath} to GitHub...`, 'info');
+        const payload = {
+            message: `Auto-update weather data via Admin Web Portal`,
+            content: encodeBase64UTF8(content),
+            branch: 'main'
+        };
+        if (sha) payload.sha = sha;
+        
+        const putRes = await fetch(url, {
+            method: 'PUT',
+            headers: {
+                'Authorization': `token ${token}`,
+                'Content-Type': 'application/json',
+                'Accept': 'application/vnd.github.v3+json'
+            },
+            body: JSON.stringify(payload)
+        });
+        
+        if (!putRes.ok) {
+            const errJson = await putRes.json().catch(() => ({}));
+            throw new Error(errJson.message || `Git update status: ${putRes.status}`);
+        }
+        
+        log(`✅ Successfully committed ${filepath} to GitHub!`, 'ok');
     }
 
     // ═══════════════════════════════════════════════════════
@@ -837,8 +955,16 @@
                     if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                     html = await response.text();
                 } catch (fetchErr) {
-                    log('Failed to fetch template automatically due to browser security. Please select it manually.', 'warn');
-                    html = await promptForTemplateFile('1st_updated.html');
+                    log('Failed to fetch local template. Retrying via raw.githubusercontent.com...', 'warn');
+                    try {
+                        const response = await fetch('https://raw.githubusercontent.com/Amith1994/GKMS_Karnataka/main/1st_updated.html');
+                        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                        html = await response.text();
+                        log('Template page loaded successfully from GitHub!', 'ok');
+                    } catch (githubErr) {
+                        log('Failed to fetch template from GitHub. Please select it manually.', 'warn');
+                        html = await promptForTemplateFile('1st_updated.html');
+                    }
                 }
             }
             log('Loaded template page (' + (html.length / 1024).toFixed(0) + ' KB)', 'ok');
@@ -913,8 +1039,16 @@
                     if (!response.ok) throw new Error(`HTTP error! status: ${response.status} for index.html`);
                     indexHtml = await response.text();
                 } catch (fetchErr) {
-                    log('Failed to fetch index.html automatically due to browser security. Please select it manually.', 'warn');
-                    indexHtml = await promptForTemplateFile('index.html');
+                    log('Failed to fetch local index.html. Retrying via raw.githubusercontent.com...', 'warn');
+                    try {
+                        const response = await fetch('https://raw.githubusercontent.com/Amith1994/GKMS_Karnataka/main/index.html');
+                        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                        indexHtml = await response.text();
+                        log('index.html template loaded successfully from GitHub!', 'ok');
+                    } catch (githubErr) {
+                        log('Failed to fetch index.html from GitHub. Please select it manually.', 'warn');
+                        indexHtml = await promptForTemplateFile('index.html');
+                    }
                 }
             }
             log('Loaded index.html template page (' + (indexHtml.length / 1024).toFixed(0) + ' KB)', 'ok');
@@ -1013,6 +1147,27 @@
                     }
                 } catch (writeErr) {
                     log('Could not write directly (packaged app?): ' + writeErr.message, 'warn');
+                }
+            }
+
+            if (!savedDirectly) {
+                const ghToken = localStorage.getItem('ghms_github_token');
+                if (ghToken) {
+                    log('Auto-publishing changes to GitHub via REST API...', 'info');
+                    try {
+                        const repo = 'Amith1994/GKMS_Karnataka';
+                        await updateGithubFile(repo, '1st_updated.html', finalHtml, ghToken);
+                        await updateGithubFile(repo, 'index.html', finalIndexHtml, ghToken);
+                        log('✅ Successfully updated on GitHub! The page will redirect in 3 seconds.', 'ok');
+                        savedDirectly = true;
+                        
+                        setTimeout(() => {
+                            window.location.href = '1st_updated.html';
+                        }, 3000);
+                    } catch (ghErr) {
+                        log(`❌ GitHub Publish Failed: ${ghErr.message}`, 'err');
+                        log('Falling back to local downloads...', 'warn');
+                    }
                 }
             }
 
