@@ -1076,7 +1076,7 @@
             const dteMarker = 'const DISTRICT_TALUKS_EXCEL = ';
             const dteIdx = finalHtml.indexOf(dteMarker);
             if (dteIdx !== -1) {
-                const dteEnd = finalHtml.indexOf(';', dteIdx) + 1;
+                const dteEnd = findStatementEnd(finalHtml, dteIdx);
                 finalHtml = finalHtml.substring(0, dteIdx) +
                     'const DISTRICT_TALUKS_EXCEL = ' + JSON.stringify(districtTaluks) + ';' +
                     finalHtml.substring(dteEnd);
@@ -1135,7 +1135,7 @@
                 log('ERROR: Could not find WEATHER_DATA in index.html!', 'err');
                 return;
             }
-            const wdEndIdx = indexHtml.indexOf(';', wdIdx) + 1;
+            const wdEndIdx = findStatementEnd(indexHtml, wdIdx);
 
             // Find BLOCK_DATA in index.html (starts with const BLOCK_DATA = )
             const bdMarker = "const BLOCK_DATA = ";
@@ -1144,7 +1144,7 @@
                 log('ERROR: Could not find BLOCK_DATA in index.html!', 'err');
                 return;
             }
-            const bdEndIdx = indexHtml.indexOf(';', bdIdx) + 1;
+            const bdEndIdx = findStatementEnd(indexHtml, bdIdx);
 
             // Compute district aggregate data
             log('Computing district aggregate weather data for map dashboard...', 'info');
@@ -1171,7 +1171,7 @@
             const datesMarker = "const DATES = ";
             const datesIdx = finalIndexHtml.indexOf(datesMarker);
             if (datesIdx !== -1) {
-                const datesEndIdx = finalIndexHtml.indexOf(';', datesIdx) + 1;
+                const datesEndIdx = findStatementEnd(finalIndexHtml, datesIdx);
                 finalIndexHtml = finalIndexHtml.substring(0, datesIdx) +
                     'const DATES = ' + JSON.stringify(datesMeta.DATES) + ';' +
                     finalIndexHtml.substring(datesEndIdx);
@@ -1180,7 +1180,7 @@
             const dayNamesMarker = "const DAY_NAMES = ";
             const dayNamesIdx = finalIndexHtml.indexOf(dayNamesMarker);
             if (dayNamesIdx !== -1) {
-                const dayNamesEndIdx = finalIndexHtml.indexOf(';', dayNamesIdx) + 1;
+                const dayNamesEndIdx = findStatementEnd(finalIndexHtml, dayNamesIdx);
                 finalIndexHtml = finalIndexHtml.substring(0, dayNamesIdx) +
                     'const DAY_NAMES = ' + JSON.stringify(datesMeta.DAY_NAMES) + ';' +
                     finalIndexHtml.substring(dayNamesEndIdx);
@@ -1189,7 +1189,7 @@
             const forecastLabelsMarker = "const FORECAST_LABELS = ";
             const forecastLabelsIdx = finalIndexHtml.indexOf(forecastLabelsMarker);
             if (forecastLabelsIdx !== -1) {
-                const forecastLabelsEndIdx = finalIndexHtml.indexOf(';', forecastLabelsIdx) + 1;
+                const forecastLabelsEndIdx = findStatementEnd(finalIndexHtml, forecastLabelsIdx);
                 finalIndexHtml = finalIndexHtml.substring(0, forecastLabelsIdx) +
                     'const FORECAST_LABELS = ' + JSON.stringify(datesMeta.FORECAST_LABELS) + ';' +
                     finalIndexHtml.substring(forecastLabelsEndIdx);
@@ -1280,6 +1280,31 @@
         } catch (err) {
             log('ERROR: ' + err.message, 'err');
         }
+    }
+
+    // Robustly find the end of: const X = { ... }; or const X = [ ... ];
+    // Handles semicolons inside strings and nested objects correctly.
+    function findStatementEnd(text, markerIdx) {
+        let i = markerIdx;
+        // Skip to the first { or [
+        while (i < text.length && text[i] !== '{' && text[i] !== '[') i++;
+        const open = text[i];
+        const close = open === '{' ? '}' : ']';
+        let depth = 0;
+        let inStr = false, strChar = '';
+        while (i < text.length) {
+            const ch = text[i];
+            if (inStr) {
+                if (ch === '\\') { i += 2; continue; } // skip escaped char
+                if (ch === strChar) inStr = false;
+            } else {
+                if (ch === '\'' || ch === '"' || ch === '`') { inStr = true; strChar = ch; }
+                else if (ch === open) depth++;
+                else if (ch === close) { depth--; if (depth === 0) { return text.indexOf(';', i) + 1; } }
+            }
+            i++;
+        }
+        return -1; // should never happen on valid JS
     }
 
     function generateWeatherDataJS(data) {
