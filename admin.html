@@ -535,15 +535,27 @@
 
         <!-- GitHub Auto-Publish Settings (web only) -->
         <div class="format-guide" id="githubSettings" style="display:none; margin-top: 1rem;">
-            <div style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:700;color:var(--primary);margin-bottom:0.5rem;">🔑 GitHub Auto-Publish Settings</div>
-            <div style="font-size:0.78rem; color:var(--text-muted); line-height:1.5;">
-                <p style="margin-bottom:0.75rem;">To commit and push updates directly to GitHub from the browser (no manual downloads needed), please enter your GitHub Personal Access Token (PAT) with <code>repo</code> permissions.</p>
-                <div style="display:flex; gap:0.5rem; flex-wrap:wrap; align-items:center;">
-                    <input type="password" id="githubToken" class="login-input" style="flex:1; min-width:200px; padding:0.5rem 0.8rem; font-size:0.8rem; height:36px; margin:0;" placeholder="ghp_...">
-                    <button class="login-btn" style="width:auto; padding:0 1rem; font-size:0.8rem; height:36px;" onclick="saveGithubToken()">Save Token</button>
-                    <button class="login-btn" style="width:auto; padding:0 1rem; font-size:0.8rem; height:36px; background:var(--danger);" onclick="clearGithubToken()">Clear</button>
+            <div style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:700;color:var(--primary);margin-bottom:0.5rem;">⚡ Direct Update Settings</div>
+            <div style="font-size:0.78rem; color:var(--text-muted); line-height:1.6;">
+
+                <!-- OPTION 1: File System Access API -->
+                <div style="background:rgba(76,175,80,0.08);border:1px solid rgba(76,175,80,0.3);border-radius:0.5rem;padding:0.75rem;margin-bottom:0.75rem;">
+                    <div style="font-weight:700;color:#2e7d32;margin-bottom:0.4rem;">🌟 Option 1 — Write Directly to Folder (Recommended)</div>
+                    <p style="margin-bottom:0.5rem;">Click the button below and select your <strong>project folder</strong>. The portal will write the updated files directly and reload the page automatically. No downloads or GitHub push needed.</p>
+                    <button id="linkFolderBtn" class="login-btn" style="width:auto;padding:0 1rem;font-size:0.8rem;height:36px;background:#2e7d32;" onclick="linkProjectFolder()">📁 Link Project Folder</button>
                 </div>
-                <div id="githubTokenStatus" style="margin-top:0.5rem; font-family:'IBM Plex Mono',monospace; color:var(--success); font-weight:600; display:none;">Token saved!</div>
+
+                <!-- OPTION 2: GitHub API -->
+                <div style="background:rgba(98,43,20,0.06);border:1px solid rgba(98,43,20,0.2);border-radius:0.5rem;padding:0.75rem;">
+                    <div style="font-weight:700;color:var(--primary);margin-bottom:0.4rem;">🔑 Option 2 — Push to GitHub (Fallback)</div>
+                    <p style="margin-bottom:0.5rem;">Enter a GitHub Personal Access Token (PAT) with <code>repo</code> permissions to commit directly to GitHub.</p>
+                    <div style="display:flex; gap:0.5rem; flex-wrap:wrap; align-items:center;">
+                        <input type="password" id="githubToken" class="login-input" style="flex:1; min-width:200px; padding:0.5rem 0.8rem; font-size:0.8rem; height:36px; margin:0;" placeholder="ghp_...">
+                        <button class="login-btn" style="width:auto; padding:0 1rem; font-size:0.8rem; height:36px;" onclick="saveGithubToken()">Save Token</button>
+                        <button class="login-btn" style="width:auto; padding:0 1rem; font-size:0.8rem; height:36px; background:var(--danger);" onclick="clearGithubToken()">Clear</button>
+                    </div>
+                    <div id="githubTokenStatus" style="margin-top:0.5rem; font-family:'IBM Plex Mono',monospace; color:var(--success); font-weight:600; display:none;">Token saved!</div>
+                </div>
             </div>
         </div>
 
@@ -751,6 +763,31 @@
     // ═══════════════════════════════════════════════════════
     let parsedWeatherData = null;
     let parsedMeta = null;
+    let projectDirHandle = null; // File System Access API directory handle
+
+    // ── File System Access API: Link Project Folder ──
+    async function linkProjectFolder() {
+        if (!window.showDirectoryPicker) {
+            log('File System Access API not supported in this browser. Use Chrome or Edge.', 'warn');
+            return;
+        }
+        try {
+            projectDirHandle = await window.showDirectoryPicker({ mode: 'readwrite' });
+            localStorage.setItem('gkms_folder_linked', projectDirHandle.name);
+            const btn = document.getElementById('linkFolderBtn');
+            if (btn) { btn.textContent = '✅ Folder: ' + projectDirHandle.name; btn.style.background = 'var(--success)'; }
+            log('✅ Project folder linked: ' + projectDirHandle.name + '. Files will be saved directly!', 'ok');
+        } catch(e) {
+            if (e.name !== 'AbortError') log('Folder link failed: ' + e.message, 'warn');
+        }
+    }
+
+    async function writeFileToDir(dirHandle, fileName, content) {
+        const fileHandle = await dirHandle.getFileHandle(fileName, { create: true });
+        const writable = await fileHandle.createWritable();
+        await writable.write(content);
+        await writable.close();
+    }
 
     function excelDateToStr(serial) {
         // Excel serial date → DD/MM/YYYY
@@ -1124,7 +1161,25 @@
 
 
             let savedDirectly = false;
-            if (isElectron && window.electronAPI) {
+
+            // ══ METHOD 1: File System Access API (write directly to disk & reload) ══
+            if (!isElectron && projectDirHandle) {
+                try {
+                    log('Writing files directly to your project folder...', 'info');
+                    await writeFileToDir(projectDirHandle, '1st_updated.html', finalHtml);
+                    log('✅ 1st_updated.html saved to disk!', 'ok');
+                    await writeFileToDir(projectDirHandle, 'index.html', finalIndexHtml);
+                    log('✅ index.html saved to disk!', 'ok');
+                    savedDirectly = true;
+                    log('✅ All files updated! Redirecting to weather app in 2 seconds...', 'ok');
+                    setTimeout(() => { window.location.href = '1st_updated.html'; }, 2000);
+                } catch (fsErr) {
+                    log('Direct file write failed: ' + fsErr.message + '. Trying next method...', 'warn');
+                }
+            }
+
+            // ══ METHOD 2: Electron native write + git push ══
+            if (!savedDirectly && isElectron && window.electronAPI) {
                 try {
                     log('Running in Electron, writing updated 1st_updated.html directly...', 'info');
                     await window.electronAPI.writeFile('1st_updated.html', finalHtml);
@@ -1146,10 +1201,11 @@
                         log('Please make sure you have Git configured and internet access, then push manually.', 'warn');
                     }
                 } catch (writeErr) {
-                    log('Could not write directly (packaged app?): ' + writeErr.message, 'warn');
+                    log('Could not write directly: ' + writeErr.message, 'warn');
                 }
             }
 
+            // ══ METHOD 3: GitHub REST API ══
             if (!savedDirectly) {
                 const ghToken = localStorage.getItem('ghms_github_token');
                 if (ghToken) {
@@ -1158,12 +1214,9 @@
                         const repo = 'Amith1994/GKMS_Karnataka';
                         await updateGithubFile(repo, '1st_updated.html', finalHtml, ghToken);
                         await updateGithubFile(repo, 'index.html', finalIndexHtml, ghToken);
-                        log('✅ Successfully updated on GitHub! The page will redirect in 3 seconds.', 'ok');
+                        log('✅ Successfully pushed to GitHub! Redirecting in 3 seconds...', 'ok');
                         savedDirectly = true;
-                        
-                        setTimeout(() => {
-                            window.location.href = '1st_updated.html';
-                        }, 3000);
+                        setTimeout(() => { window.location.href = '1st_updated.html'; }, 3000);
                     } catch (ghErr) {
                         log(`❌ GitHub Publish Failed: ${ghErr.message}`, 'err');
                         log('Falling back to local downloads...', 'warn');
@@ -1171,27 +1224,19 @@
                 }
             }
 
+            // ══ METHOD 4: Download fallback (last resort) ══
             if (!savedDirectly) {
-                // Download 1st_updated.html
                 const blob1 = new Blob([finalHtml], { type: 'text/html' });
                 const url1 = URL.createObjectURL(blob1);
-                const a1 = document.createElement('a');
-                a1.href = url1;
-                a1.download = '1st_updated.html';
-                a1.click();
+                const a1 = document.createElement('a'); a1.href = url1; a1.download = '1st_updated.html'; a1.click();
                 URL.revokeObjectURL(url1);
 
-                // Download index.html
                 const blob2 = new Blob([finalIndexHtml], { type: 'text/html' });
                 const url2 = URL.createObjectURL(blob2);
-                const a2 = document.createElement('a');
-                a2.href = url2;
-                a2.download = 'index.html';
-                a2.click();
+                const a2 = document.createElement('a'); a2.href = url2; a2.download = 'index.html'; a2.click();
                 URL.revokeObjectURL(url2);
 
-                log('✅ Downloads started! Replace 1st_updated.html and index.html in your folder.', 'ok');
-                log('Then commit and push to GitHub to update the live site.', 'info');
+                log('⚠️ Files downloaded. To enable auto-update, click "📁 Link Project Folder" in the settings above after logging in.', 'warn');
             }
 
         } catch (err) {
