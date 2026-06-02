@@ -832,9 +832,14 @@
                 html = await window.electronAPI.readFile('1st_updated.html');
             } else {
                 log('Reading template page via fetch...', 'info');
-                const response = await fetch('1st_updated.html');
-                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-                html = await response.text();
+                try {
+                    const response = await fetch('1st_updated.html');
+                    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                    html = await response.text();
+                } catch (fetchErr) {
+                    log('Failed to fetch template automatically due to browser security. Please select it manually.', 'warn');
+                    html = await promptForTemplateFile('1st_updated.html');
+                }
             }
             log('Loaded template page (' + (html.length / 1024).toFixed(0) + ' KB)', 'ok');
 
@@ -903,9 +908,14 @@
                 indexHtml = await window.electronAPI.readFile('index.html');
             } else {
                 log('Reading index.html template page via fetch...', 'info');
-                const response = await fetch('index.html');
-                if (!response.ok) throw new Error(`HTTP error! status: ${response.status} for index.html`);
-                indexHtml = await response.text();
+                try {
+                    const response = await fetch('index.html');
+                    if (!response.ok) throw new Error(`HTTP error! status: ${response.status} for index.html`);
+                    indexHtml = await response.text();
+                } catch (fetchErr) {
+                    log('Failed to fetch index.html automatically due to browser security. Please select it manually.', 'warn');
+                    indexHtml = await promptForTemplateFile('index.html');
+                }
             }
             log('Loaded index.html template page (' + (indexHtml.length / 1024).toFixed(0) + ' KB)', 'ok');
 
@@ -1148,6 +1158,42 @@
             DAY_NAMES: dayNames,
             FORECAST_LABELS: forecastLabels
         };
+    }
+
+    function promptForTemplateFile(fileName) {
+        return new Promise((resolve, reject) => {
+            log(`Please select the existing "${fileName}" file from your project folder to use as a template...`, 'info');
+            
+            // Create a temporary file input
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = '.html';
+            
+            input.onchange = function(e) {
+                const file = e.target.files[0];
+                if (!file) {
+                    reject(new Error('No file selected'));
+                    return;
+                }
+                
+                // Warn if file name doesn't match expected name
+                if (file.name !== fileName) {
+                    log(`Warning: Selected file name "${file.name}" does not match expected name "${fileName}".`, 'warn');
+                }
+                
+                const reader = new FileReader();
+                reader.onload = function(evt) {
+                    log(`Successfully loaded template: ${file.name} (${(file.size / 1024).toFixed(0)} KB)`, 'ok');
+                    resolve(evt.target.result);
+                };
+                reader.onerror = function() {
+                    reject(new Error('Failed to read the selected file'));
+                };
+                reader.readAsText(file);
+            };
+            
+            input.click();
+        });
     }
 
     function resetUpload() {

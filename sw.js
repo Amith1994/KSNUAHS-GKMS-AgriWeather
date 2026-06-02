@@ -1,4 +1,4 @@
-const CACHE_NAME = 'gkms-karnataka-v1';
+const CACHE_NAME = 'gkms-karnataka-v2';
 const STATIC_ASSETS = [
     './',
     '1st_updated.html',

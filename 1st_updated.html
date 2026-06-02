@@ -879,6 +879,10 @@
                     <span class="en-text">🗺️ Map View</span>
                     <span class="kan-text">🗺️ ನಕ್ಷೆ ವೀಕ್ಷಣೆ</span>
                 </button>
+                <button id="adminLoginBtn" style="background:linear-gradient(135deg,#995F2F,#622B14);padding:0.45rem 1rem;font-size:0.82rem;font-weight:600;border-radius:0.5rem;display:none;" onclick="location.href='admin.html'">
+                    <span class="en-text">🔐 Admin Login</span>
+                    <span class="kan-text">🔐 ನಿರ್ವಾಹಕ ಲಾಗಿನ್</span>
+                </button>
                 <div class="live-indicator">
                     <div class="live-dot"></div>
                     <span>LIVE</span>
@@ -3325,10 +3329,12 @@
             // Initialize timestamp
             updateTimestamp();
 
-            // Show Admin tab if not in Electron (web only)
+            // Show Admin tab/button if not in Electron (web only)
             if (!window.appInfo || !window.appInfo.isElectron) {
                 const tabAdmin = document.getElementById('tabAdmin');
                 if (tabAdmin) tabAdmin.style.display = '';
+                const btnAdmin = document.getElementById('adminLoginBtn');
+                if (btnAdmin) btnAdmin.style.display = '';
             }
         }
 
