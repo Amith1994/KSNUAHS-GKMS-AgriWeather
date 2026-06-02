@@ -928,6 +928,7 @@ body.layout-edit .layout-edit-dot { background: var(--accent3); }
 
 <header>
   <a href="1st_updated.html" class="back-to-weather">← Weather Home</a>
+  <a href="admin.html" class="back-to-weather" id="adminHeaderLink" style="display:none; background: rgba(199,125,255,0.06); border-color: rgba(199,125,255,0.25); color: var(--accent4);">🔐 Admin Portal</a>
   <div class="header-logo">IMD · MOD</div>
   <div class="header-sep"></div>
   <div class="header-title">Karnataka District Weather Forecast Dashboard</div>
@@ -3887,6 +3888,12 @@ function init() {
   loadState();
   injectDragHandles();
   injectResizeHandles();
+
+  // Show Admin Portal link if not in Electron (web only)
+  if (!window.appInfo || !window.appInfo.isElectron) {
+    const adminLink = document.getElementById('adminHeaderLink');
+    if (adminLink) adminLink.style.display = 'inline-flex';
+  }
 
   const isFree = canvas.classList.contains('free-layout');
   if (isFree) {

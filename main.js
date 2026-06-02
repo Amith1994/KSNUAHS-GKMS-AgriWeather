@@ -1,11 +1,56 @@
-const { app, BrowserWindow, dialog, Menu, shell } = require('electron');
+const { app, BrowserWindow, dialog, Menu, shell, ipcMain } = require('electron');
 const { autoUpdater } = require('electron-updater');
 const path = require('path');
+const fs = require('fs');
+const { exec } = require('child_process');
 
 // Disable hardware acceleration for older machines
 // app.disableHardwareAcceleration();
 
 let mainWindow;
+
+// Register IPC handlers for local file access (needed for admin updates)
+ipcMain.handle('read-file', async (event, fileName) => {
+    try {
+        const filePath = path.join(__dirname, fileName);
+        return fs.readFileSync(filePath, 'utf-8');
+    } catch (err) {
+        throw new Error(`Failed to read file ${fileName}: ${err.message}`);
+    }
+});
+
+ipcMain.handle('write-file', async (event, fileName, content) => {
+    try {
+        const filePath = path.join(__dirname, fileName);
+        fs.writeFileSync(filePath, content, 'utf-8');
+        return true;
+    } catch (err) {
+        throw new Error(`Failed to write file ${fileName}: ${err.message}`);
+    }
+});
+
+ipcMain.handle('git-publish', async (event) => {
+    return new Promise((resolve, reject) => {
+        const shellPath = process.platform === 'win32'
+            ? path.join(process.env.SystemRoot || process.env.windir || 'C:\\Windows', 'System32', 'cmd.exe')
+            : '/bin/sh';
+
+        // Run git commands: stage both files, commit, and push
+        const command = 'git add 1st_updated.html index.html && git commit -m "Auto-update weather data via Admin Portal" && git push';
+        exec(command, { cwd: __dirname, shell: shellPath }, (error, stdout, stderr) => {
+            if (error) {
+                // Check if the error is just 'nothing to commit'
+                if (stdout.includes('nothing to commit') || stderr.includes('nothing to commit') || error.message.includes('nothing to commit')) {
+                    resolve('Nothing to commit, working tree clean.');
+                    return;
+                }
+                reject(new Error(stderr || error.message));
+                return;
+            }
+            resolve(stdout || 'Successfully committed and pushed changes to GitHub!');
+        });
+    });
+});
 
 function createWindow() {
     mainWindow = new BrowserWindow({
@@ -22,6 +67,7 @@ function createWindow() {
             nodeIntegration: false,
             contextIsolation: true,
             spellcheck: false,
+            webSecurity: false,
         }
     });
 

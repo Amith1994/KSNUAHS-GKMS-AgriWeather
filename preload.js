@@ -1,9 +1,11 @@
-const { contextBridge } = require('electron');
-const pkg = require('./package.json');
+const { contextBridge, ipcRenderer } = require('electron');
 
 contextBridge.exposeInMainWorld('appInfo', {
-    platform: process.platform,
-    version: pkg.version,
-    name: pkg.productName || pkg.name,
     isElectron: true,
+});
+
+contextBridge.exposeInMainWorld('electronAPI', {
+    readFile: (fileName) => ipcRenderer.invoke('read-file', fileName),
+    writeFile: (fileName, content) => ipcRenderer.invoke('write-file', fileName, content),
+    gitPublish: () => ipcRenderer.invoke('git-publish'),
 });

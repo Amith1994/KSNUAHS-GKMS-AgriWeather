@@ -824,9 +824,18 @@
         setStep(3);
 
         try {
-            // Fetch the current 1st_updated.html
-            const response = await fetch('1st_updated.html');
-            const html = await response.text();
+            // Read current 1st_updated.html
+            let html;
+            const isElectron = window.appInfo && window.appInfo.isElectron;
+            if (isElectron && window.electronAPI) {
+                log('Running in Electron, reading template directly...', 'info');
+                html = await window.electronAPI.readFile('1st_updated.html');
+            } else {
+                log('Reading template page via fetch...', 'info');
+                const response = await fetch('1st_updated.html');
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                html = await response.text();
+            }
             log('Loaded template page (' + (html.length / 1024).toFixed(0) + ' KB)', 'ok');
 
             // Generate the WEATHER_DATA JS object
@@ -884,19 +893,141 @@
                 log('Updated DISTRICT_TALUKS_EXCEL', 'ok');
             }
 
-            log('Page generated successfully! (' + (finalHtml.length / 1024).toFixed(0) + ' KB)', 'ok');
+            log('1st_updated.html generated successfully! (' + (finalHtml.length / 1024).toFixed(0) + ' KB)', 'ok');
 
-            // Download
-            const blob = new Blob([finalHtml], { type: 'text/html' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = '1st_updated.html';
-            a.click();
-            URL.revokeObjectURL(url);
 
-            log('✅ Download started! Replace your 1st_updated.html with the downloaded file.', 'ok');
-            log('Then commit and push to GitHub to update the live site.', 'info');
+            // ────────── UPDATE index.html (the Map Dashboard) ──────────
+            let indexHtml;
+            if (isElectron && window.electronAPI) {
+                log('Running in Electron, reading index.html directly...', 'info');
+                indexHtml = await window.electronAPI.readFile('index.html');
+            } else {
+                log('Reading index.html template page via fetch...', 'info');
+                const response = await fetch('index.html');
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status} for index.html`);
+                indexHtml = await response.text();
+            }
+            log('Loaded index.html template page (' + (indexHtml.length / 1024).toFixed(0) + ' KB)', 'ok');
+
+            // Find WEATHER_DATA in index.html (starts with const WEATHER_DATA = )
+            const wdMarker = "const WEATHER_DATA = ";
+            const wdIdx = indexHtml.indexOf(wdMarker);
+            if (wdIdx === -1) {
+                log('ERROR: Could not find WEATHER_DATA in index.html!', 'err');
+                return;
+            }
+            const wdEndIdx = indexHtml.indexOf(';', wdIdx) + 1;
+
+            // Find BLOCK_DATA in index.html (starts with const BLOCK_DATA = )
+            const bdMarker = "const BLOCK_DATA = ";
+            const bdIdx = indexHtml.indexOf(bdMarker);
+            if (bdIdx === -1) {
+                log('ERROR: Could not find BLOCK_DATA in index.html!', 'err');
+                return;
+            }
+            const bdEndIdx = indexHtml.indexOf(';', bdIdx) + 1;
+
+            // Compute district aggregate data
+            log('Computing district aggregate weather data for map dashboard...', 'info');
+            const distAggregates = computeDistrictAggregates(parsedWeatherData);
+            const distAggregatesJS = JSON.stringify(distAggregates);
+            log('Generated district WEATHER_DATA object (' + (distAggregatesJS.length / 1024).toFixed(1) + ' KB)', 'ok');
+
+            // Replace in indexHtml
+            let finalIndexHtml = indexHtml;
+            // Since bdIdx is after wdIdx, replace BLOCK_DATA first to preserve wdIdx position
+            finalIndexHtml = finalIndexHtml.substring(0, bdIdx) +
+                'const BLOCK_DATA = ' + dataJS + ';' +
+                finalIndexHtml.substring(bdEndIdx);
+
+            // Replace WEATHER_DATA (wdIdx is unaffected since it is before bdIdx)
+            finalIndexHtml = finalIndexHtml.substring(0, wdIdx) +
+                'const WEATHER_DATA = ' + distAggregatesJS + ';' +
+                finalIndexHtml.substring(wdEndIdx);
+
+            // Also update DATES, DAY_NAMES, and FORECAST_LABELS in index.html
+            log('Updating dates metadata in index.html...', 'info');
+            const datesMeta = generateDatesMetadata(parsedMeta.dates);
+            
+            const datesMarker = "const DATES = ";
+            const datesIdx = finalIndexHtml.indexOf(datesMarker);
+            if (datesIdx !== -1) {
+                const datesEndIdx = finalIndexHtml.indexOf(';', datesIdx) + 1;
+                finalIndexHtml = finalIndexHtml.substring(0, datesIdx) +
+                    'const DATES = ' + JSON.stringify(datesMeta.DATES) + ';' +
+                    finalIndexHtml.substring(datesEndIdx);
+            }
+            
+            const dayNamesMarker = "const DAY_NAMES = ";
+            const dayNamesIdx = finalIndexHtml.indexOf(dayNamesMarker);
+            if (dayNamesIdx !== -1) {
+                const dayNamesEndIdx = finalIndexHtml.indexOf(';', dayNamesIdx) + 1;
+                finalIndexHtml = finalIndexHtml.substring(0, dayNamesIdx) +
+                    'const DAY_NAMES = ' + JSON.stringify(datesMeta.DAY_NAMES) + ';' +
+                    finalIndexHtml.substring(dayNamesEndIdx);
+            }
+            
+            const forecastLabelsMarker = "const FORECAST_LABELS = ";
+            const forecastLabelsIdx = finalIndexHtml.indexOf(forecastLabelsMarker);
+            if (forecastLabelsIdx !== -1) {
+                const forecastLabelsEndIdx = finalIndexHtml.indexOf(';', forecastLabelsIdx) + 1;
+                finalIndexHtml = finalIndexHtml.substring(0, forecastLabelsIdx) +
+                    'const FORECAST_LABELS = ' + JSON.stringify(datesMeta.FORECAST_LABELS) + ';' +
+                    finalIndexHtml.substring(forecastLabelsEndIdx);
+            }
+
+            log('index.html generated successfully! (' + (finalIndexHtml.length / 1024).toFixed(0) + ' KB)', 'ok');
+
+
+            let savedDirectly = false;
+            if (isElectron && window.electronAPI) {
+                try {
+                    log('Running in Electron, writing updated 1st_updated.html directly...', 'info');
+                    await window.electronAPI.writeFile('1st_updated.html', finalHtml);
+                    log('✅ 1st_updated.html updated successfully directly in the app directory!', 'ok');
+
+                    log('Running in Electron, writing updated index.html directly...', 'info');
+                    await window.electronAPI.writeFile('index.html', finalIndexHtml);
+                    log('✅ index.html updated successfully directly in the app directory!', 'ok');
+
+                    savedDirectly = true;
+
+                    // Auto-publish to GitHub
+                    try {
+                        log('Auto-publishing to GitHub... (running git commit & push)', 'info');
+                        const gitResult = await window.electronAPI.gitPublish();
+                        log(`✅ GitHub Publish: ${gitResult}`, 'ok');
+                    } catch (gitErr) {
+                        log(`❌ GitHub Publish Failed: ${gitErr.message}`, 'err');
+                        log('Please make sure you have Git configured and internet access, then push manually.', 'warn');
+                    }
+                } catch (writeErr) {
+                    log('Could not write directly (packaged app?): ' + writeErr.message, 'warn');
+                }
+            }
+
+            if (!savedDirectly) {
+                // Download 1st_updated.html
+                const blob1 = new Blob([finalHtml], { type: 'text/html' });
+                const url1 = URL.createObjectURL(blob1);
+                const a1 = document.createElement('a');
+                a1.href = url1;
+                a1.download = '1st_updated.html';
+                a1.click();
+                URL.revokeObjectURL(url1);
+
+                // Download index.html
+                const blob2 = new Blob([finalIndexHtml], { type: 'text/html' });
+                const url2 = URL.createObjectURL(blob2);
+                const a2 = document.createElement('a');
+                a2.href = url2;
+                a2.download = 'index.html';
+                a2.click();
+                URL.revokeObjectURL(url2);
+
+                log('✅ Downloads started! Replace 1st_updated.html and index.html in your folder.', 'ok');
+                log('Then commit and push to GitHub to update the live site.', 'info');
+            }
 
         } catch (err) {
             log('ERROR: ' + err.message, 'err');
@@ -925,6 +1056,98 @@
 
         lines.push('        }');
         return lines.join('');
+    }
+
+    function computeDistrictAggregates(weatherData) {
+        const districtData = {};
+        
+        Object.keys(weatherData).forEach(dist => {
+            districtData[dist] = {};
+            const blocks = Object.keys(weatherData[dist]);
+            if (blocks.length === 0) return;
+            
+            // Find all dates
+            const dateSet = new Set();
+            blocks.forEach(block => {
+                Object.keys(weatherData[dist][block]).forEach(date => {
+                    dateSet.add(date);
+                });
+            });
+            
+            dateSet.forEach(date => {
+                let sumTempMax = 0, countTempMax = 0;
+                let sumTempMin = 0, countTempMin = 0;
+                let sumRainfall = 0, countRainfall = 0;
+                let sumHumidityI = 0, countHumidityI = 0;
+                let sumHumidityII = 0, countHumidityII = 0;
+                let sumWindSpeed = 0, countWindSpeed = 0;
+                let sumWindDir = 0, countWindDir = 0;
+                let sumCloudCover = 0, countCloudCover = 0;
+                const warnings = [];
+                
+                blocks.forEach(block => {
+                    const dayData = weatherData[dist][block][date];
+                    if (dayData) {
+                        if (typeof dayData.tempMax === 'number') { sumTempMax += dayData.tempMax; countTempMax++; }
+                        if (typeof dayData.tempMin === 'number') { sumTempMin += dayData.tempMin; countTempMin++; }
+                        if (typeof dayData.rainfall === 'number') { sumRainfall += dayData.rainfall; countRainfall++; }
+                        if (typeof dayData.humidityI === 'number') { sumHumidityI += dayData.humidityI; countHumidityI++; }
+                        if (typeof dayData.humidityII === 'number') { sumHumidityII += dayData.humidityII; countHumidityII++; }
+                        if (typeof dayData.windSpeed === 'number') { sumWindSpeed += dayData.windSpeed; countWindSpeed++; }
+                        if (typeof dayData.windDir === 'number') { sumWindDir += dayData.windDir; countWindDir++; }
+                        if (typeof dayData.cloudCover === 'number') { sumCloudCover += dayData.cloudCover; countCloudCover++; }
+                        if (dayData.warning && dayData.warning.trim() !== '') {
+                            warnings.push(dayData.warning.trim());
+                        }
+                    }
+                });
+                
+                const round1 = (val) => Math.round(val * 10) / 10;
+                
+                districtData[dist][date] = {
+                    tempMax: countTempMax > 0 ? round1(sumTempMax / countTempMax) : 0,
+                    tempMin: countTempMin > 0 ? round1(sumTempMin / countTempMin) : 0,
+                    rainfall: countRainfall > 0 ? round1(sumRainfall / countRainfall) : 0,
+                    humidityI: countHumidityI > 0 ? round1(sumHumidityI / countHumidityI) : 0,
+                    humidityII: countHumidityII > 0 ? round1(sumHumidityII / countHumidityII) : 0,
+                    windSpeed: countWindSpeed > 0 ? round1(sumWindSpeed / countWindSpeed) : 0,
+                    windDir: countWindDir > 0 ? round1(sumWindDir / countWindDir) : 0,
+                    cloudCover: countCloudCover > 0 ? round1(sumCloudCover / countCloudCover) : 0,
+                    warning: warnings.length > 0 ? warnings.join('; ') : null
+                };
+            });
+        });
+        
+        return districtData;
+    }
+
+    function generateDatesMetadata(datesList) {
+        const dayNames = [];
+        const forecastLabels = [];
+        
+        datesList.forEach(dStr => {
+            // Parse "DD/MM/YYYY"
+            const parts = dStr.split('/');
+            const day = parseInt(parts[0], 10);
+            const month = parseInt(parts[1], 10) - 1; // 0-indexed month
+            const year = parseInt(parts[2], 10);
+            
+            const dateObj = new Date(year, month, day);
+            
+            // Short day name
+            const days = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+            dayNames.push(days[dateObj.getDay()]);
+            
+            // Month abbreviation
+            const months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+            forecastLabels.push(`${day} ${months[dateObj.getMonth()]}`);
+        });
+        
+        return {
+            DATES: datesList,
+            DAY_NAMES: dayNames,
+            FORECAST_LABELS: forecastLabels
+        };
     }
 
     function resetUpload() {

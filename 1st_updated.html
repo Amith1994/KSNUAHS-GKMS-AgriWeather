@@ -1056,6 +1056,10 @@
                 <span class="en-text">🗺️ Full Map View ↗</span>
                 <span class="kan-text">🗺️ ಪೂರ್ಣ ನಕ್ಷೆ ವೀಕ್ಷಣೆ ↗</span>
             </button>
+            <button class="tab-btn" id="tabAdmin" onclick="location.href='admin.html'" style="display:none;">
+                <span class="en-text">🔐 Admin Login</span>
+                <span class="kan-text">🔐 ನಿರ್ವಾಹಕ ಲಾಗಿನ್</span>
+            </button>
         </div>
 
         <!-- TAB 1: PINCODE SEARCH -->
@@ -3320,6 +3324,12 @@
 
             // Initialize timestamp
             updateTimestamp();
+
+            // Show Admin tab if not in Electron (web only)
+            if (!window.appInfo || !window.appInfo.isElectron) {
+                const tabAdmin = document.getElementById('tabAdmin');
+                if (tabAdmin) tabAdmin.style.display = '';
+            }
         }
 
         function handleSearch() {
