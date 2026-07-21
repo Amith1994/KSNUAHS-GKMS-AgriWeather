@@ -19,6 +19,10 @@ desktop.ini
 node_modules/
 package-lock.json
 
+# Python
+__pycache__/
+*.pyc
+
 # Electron build output
 dist/
 out/
