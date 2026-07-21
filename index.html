@@ -909,6 +909,100 @@ body.layout-edit .layout-edit-dot { background: var(--accent3); }
   .infopanel-inner::-webkit-scrollbar-track { background: transparent; }
   .infopanel-inner::-webkit-scrollbar-thumb { background: linear-gradient(#c77dff55,#00e5ff55); border-radius: 2px; }
 
+  /* ═══════════════════════════════════════════════════════
+     RESPONSIVE AUTO-FIT MEDIA QUERIES (PC, TAB, MOBILE)
+     ═══════════════════════════════════════════════════════ */
+  @media (max-width: 1200px) {
+    #layout-canvas {
+      grid-template-columns: 290px 1fr 290px;
+    }
+    .header-title {
+      font-size: 11px;
+    }
+  }
+
+  @media (max-width: 992px) {
+    header {
+      flex-wrap: wrap;
+      padding: 8px 12px;
+      gap: 10px;
+      height: auto;
+    }
+    .header-sep { display: none; }
+    .header-meta {
+      font-size: 10px;
+      gap: 10px;
+      width: 100%;
+      order: 3;
+      justify-content: space-between;
+      border-top: 1px solid rgba(22,32,53,0.6);
+      padding-top: 4px;
+    }
+    .layout-toolbar {
+      margin-left: auto;
+    }
+    #layout-canvas {
+      grid-template-columns: 260px 1fr 260px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    body {
+      height: auto;
+      min-height: 100vh;
+      overflow-y: auto;
+    }
+    header {
+      padding: 10px;
+      gap: 8px;
+    }
+    .header-logo {
+      font-size: 11px;
+      letter-spacing: 1.5px;
+    }
+    .header-title {
+      display: none;
+    }
+    .back-to-weather {
+      padding: 4px 8px;
+      font-size: 9px;
+    }
+    #layout-canvas {
+      display: flex;
+      flex-direction: column;
+      height: auto;
+      overflow-y: visible;
+    }
+    #layout-canvas .sidebar,
+    #layout-canvas .infopanel {
+      width: 100%;
+      height: auto;
+      max-height: none;
+    }
+    #layout-canvas #map {
+      width: 100%;
+      height: 50vh;
+      min-height: 380px;
+      order: 2;
+    }
+    #layout-canvas .sidebar {
+      order: 1;
+    }
+    #layout-canvas .infopanel {
+      order: 3;
+    }
+    .param-grid {
+      grid-template-columns: repeat(auto-fit, minmax(95px, 1fr));
+    }
+    .stats-summary {
+      grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+    }
+    .weekly-forecast {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+  }
+
 </style>
 </head>
 <body>

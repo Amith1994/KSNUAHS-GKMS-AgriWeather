@@ -913,6 +913,98 @@
     background: #ffffff;
     font-family: var(--font-primary);
   }
+
+  /* ═══════════════════════════════════════════════════════
+     RESPONSIVE AUTO-FIT MEDIA QUERIES FOR MAP.HTML
+     ═══════════════════════════════════════════════════════ */
+  @media (max-width: 992px) {
+    header {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 12px 16px;
+      gap: 12px;
+    }
+    .header-right {
+      width: 100%;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+    }
+    .app-container {
+      padding: 16px;
+      gap: 16px;
+    }
+    .stats-grid {
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    }
+    .search-input {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .header-logo {
+      font-size: 14px;
+      white-space: normal;
+    }
+    .header-subtitle {
+      font-size: 11px;
+    }
+    .nav-btn, .file-upload-btn {
+      padding: 6px 12px;
+      font-size: 11px;
+    }
+    .stats-grid {
+      grid-template-columns: repeat(auto-fit, minmax(135px, 1fr));
+      gap: 10px;
+    }
+    .stat-card {
+      padding: 12px;
+    }
+    .map-wrapper {
+      padding: 14px;
+      min-height: 420px;
+      border-radius: 12px;
+    }
+    #karnataka-svg-container {
+      height: clamp(320px, 45vh, 440px);
+    }
+    .district-summary-box {
+      padding: 14px;
+      border-radius: 12px;
+    }
+    .summary-metrics-grid {
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    }
+    .table-section {
+      padding: 14px;
+      border-radius: 12px;
+    }
+    .table-controls {
+      width: 100%;
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .table-responsive {
+      max-height: 480px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .region-pills {
+      overflow-x: auto;
+      flex-wrap: nowrap;
+      padding-bottom: 4px;
+      -webkit-overflow-scrolling: touch;
+    }
+    .region-pill {
+      white-space: nowrap;
+      padding: 5px 10px;
+      font-size: 11px;
+    }
+    .summary-dist-name {
+      font-size: 17px;
+    }
+  }
 </style>
 </head>
 <body>

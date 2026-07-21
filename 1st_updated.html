@@ -5053,18 +5053,28 @@ var R0=Object.defineProperty;var V0=(w,_,S)=>_ in w?R0(w,_,{enumerable:!0,config
         .imd-table .summary-row td { background: rgba(98,43,20,0.06); font-style: italic; }
         .imd-table .summary-row td.param-label { font-style: normal; background: rgba(98,43,20,0.12); }
 
-        /* ── Responsive ── */
-        @media (max-width: 768px) {
-            .search-title { font-size: 2rem; }
-            .weather-grid { grid-template-columns: 1fr; }
-            .input-group { flex-direction: column; }
-            .modal-content { padding: 1.5rem; }
-            .districts-grid { grid-template-columns: 1fr; }
-            .weather-scene { height: 180px; }
-            .footer-team { grid-template-columns: 1fr; }
-            .browse-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
-            .tab-btn { font-size: 0.78rem; padding: 0.5rem 0.8rem; }
+        /* ── Responsive Auto-Fit Enhancements ── */
+        .tab-nav {
+            overflow-x: auto;
+            flex-wrap: nowrap;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            padding-bottom: 2px;
         }
+        .tab-nav::-webkit-scrollbar { display: none; }
+
+        @media (max-width: 768px) {
+            .search-title { font-size: clamp(1.6rem, 5.5vw, 2.4rem); }
+            .search-box { padding: 1rem; border-radius: 1rem; }
+            .weather-grid { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0.75rem; }
+            .input-group { flex-direction: column; }
+            .input-group button { width: 100%; justify-content: center; }
+            .modal-content { padding: 1.2rem; }
+            .districts-grid { grid-template-columns: 1fr; }
+            .weather-scene { height: 160px; }
+            .footer-team { grid-template-columns: 1fr; }
+            .browse-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
+            .tab-btn { font-size: 0.78rem; padding: 0.5rem 0.8rem; }
     
         
 
