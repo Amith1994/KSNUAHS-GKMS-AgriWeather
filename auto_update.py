@@ -211,8 +211,12 @@ def find_statement_end(text, marker_idx):
             elif ch == close_ch:
                 depth -= 1
                 if depth == 0:
-                    semi = text.find(';', i)
-                    return semi + 1 if semi != -1 else i + 1
+                    j = i + 1
+                    while j < len(text) and text[j] in ' \t\r\n':
+                        j += 1
+                    if j < len(text) and text[j] == ';':
+                        return j + 1
+                    return i + 1
         i += 1
     return -1
 
@@ -322,6 +326,16 @@ def update_html_files(weather_data, dates_list, base_dir):
             f.write(map_html)
         print("[SUCCESS] map.html updated successfully!")
 
+def is_valid_weather_excel(excel_path):
+    try:
+        df = pd.read_excel(excel_path)
+        cols = [str(c).upper() for c in df.columns]
+        has_dist = any('DIST' in c for c in cols)
+        has_block = any('BLOCK' in c for c in cols)
+        return has_dist and has_block
+    except Exception:
+        return False
+
 def main():
     base_dir = os.path.dirname(os.path.abspath(__file__))
     
@@ -331,18 +345,28 @@ def main():
     user_downloads = os.path.join(os.path.expanduser("~"), "Downloads")
     if os.path.exists(user_downloads):
         excel_files += glob.glob(os.path.join(user_downloads, "*blwf*.xls")) + glob.glob(os.path.join(user_downloads, "*blwf*.xlsx"))
+        excel_files += glob.glob(os.path.join(user_downloads, "*Weather*.xls")) + glob.glob(os.path.join(user_downloads, "*Weather*.xlsx"))
         excel_files += glob.glob(os.path.join(user_downloads, "Karnataka*.xls")) + glob.glob(os.path.join(user_downloads, "Karnataka*.xlsx"))
 
-    if not excel_files:
-        print("[ERROR] No weather Excel file (.xls / .xlsx) found in workspace or Downloads!")
+    # Exclude temporary Excel files and non-weather files
+    valid_files = [f for f in excel_files if not os.path.basename(f).startswith("~$") and is_valid_weather_excel(f)]
+
+    if not valid_files:
+        print("[ERROR] No valid weather forecast Excel file (.xls / .xlsx) found in workspace or Downloads!")
+        print("Please ensure your IMD weather Excel file has 'DIST_NAME' and 'BLOCK_NAME' columns.")
         input("Press Enter to exit...")
         return
 
-    latest_excel = max(excel_files, key=os.path.getmtime)
+    latest_excel = max(valid_files, key=os.path.getmtime)
     print(f"[INFO] Found Weather Excel file: {os.path.basename(latest_excel)}")
     
     weather_data, dates_list = parse_weather_excel(latest_excel)
     print(f"[INFO] Parsed {len(weather_data)} districts for dates: {dates_list}")
+
+    if not weather_data or not dates_list:
+        print("[ERROR] Weather data parsed as empty. Aborting HTML update to prevent data loss.")
+        input("Press Enter to exit...")
+        return
 
     update_html_files(weather_data, dates_list, base_dir)
 
