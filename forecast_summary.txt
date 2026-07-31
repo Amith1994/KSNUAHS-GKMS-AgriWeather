@@ -1,0 +1,569 @@
+================================================================================
+             IMD KARNATAKA WEATHER FORECAST EXECUTIVE SUMMARY
+               FORECAST RANGE: 29/07/2026 TO 02/08/2026
+================================================================================
+Generated on: 30 July 2026, 09:15 AM
+
+REGION: ALL KARNATAKA
+--------------------------------------------------
+• Average Cumulative Rainfall: 28.4 mm
+• District Cumulative Rain Range: 1.6 mm to 170.4 mm
+• Temperature Profile: Avg Max 28.8°C | Avg Min 22.9°C
+• Humidity Profile: Morning RH-I 85.5% | Evening RH-II 61.8%
+• Warnings & Alerts:
+   • BAGALKOT: Gusty Winds
+   • BAGALKOT: Thunderstorm with Lightning
+   • BAGALKOT: Yellow Alert – Light to Moderate Rain
+   • BALLARY: Gusty Winds
+   • BALLARY: Thunderstorm with Lightning
+   • BALLARY: Yellow Alert – Light to Moderate Rain
+   • BANGALURU-RURAL: Gusty Winds
+   • BANGALURU-RURAL: Thunderstorm with Lightning
+   • BANGALURU-RURAL: Yellow Alert – Light to Moderate Rain
+   • BANGALURU-URBAN: Gusty Winds
+   • BANGALURU-URBAN: Thunderstorm with Lightning
+   • BANGALURU-URBAN: Yellow Alert – Light to Moderate Rain
+   • BELAGAVI: Gusty Winds
+   • BELAGAVI: Thunderstorm with Lightning
+   • BELAGAVI: Yellow Alert – Heavy Rain
+   • BELAGAVI: Yellow Alert – Light to Moderate Rain
+   • BIDAR: Gusty Winds
+   • BIDAR: Thunderstorm with Lightning
+   • BIDAR: Yellow Alert – Light to Moderate Rain
+   • BIJAPUR: Gusty Winds
+   • BIJAPUR: Thunderstorm with Lightning
+   • BIJAPUR: Yellow Alert – Light to Moderate Rain
+   • CHAMARAJANAGAR: Gusty Winds
+   • CHAMARAJANAGAR: Thunderstorm with Lightning
+   • CHAMARAJANAGAR: Yellow Alert – Light to Moderate Rain
+   • CHIKBALLAPUR: Gusty Winds
+   • CHIKBALLAPUR: Thunderstorm with Lightning
+   • CHIKBALLAPUR: Yellow Alert – Light to Moderate Rain
+   • CHIKMAGALURU: Gusty Winds
+   • CHIKMAGALURU: Thunderstorm with Lightning
+   • CHIKMAGALURU: Yellow Alert – Heavy Rain
+   • CHITRADURGA: Gusty Winds
+   • CHITRADURGA: Thunderstorm with Lightning
+   • CHITRADURGA: Yellow Alert – Light to Moderate Rain
+   • DAKSHIN-KANNAD: Gusty Winds
+   • DAKSHIN-KANNAD: Orange Alert – Heavy to Very Heavy Rain
+   • DAKSHIN-KANNAD: Thunderstorm with Lightning
+   • DAKSHIN-KANNAD: Yellow Alert – Heavy Rain
+   • DAVANGERE: Gusty Winds
+   • DAVANGERE: Thunderstorm with Lightning
+   • DAVANGERE: Yellow Alert – Light to Moderate Rain
+   • DHARWAD: Gusty Winds
+   • DHARWAD: Thunderstorm with Lightning
+   • DHARWAD: Yellow Alert – Light to Moderate Rain
+   • GADAG: Gusty Winds
+   • GADAG: Thunderstorm with Lightning
+   • GADAG: Yellow Alert – Light to Moderate Rain
+   • GULBARGA: Gusty Winds
+   • GULBARGA: Thunderstorm with Lightning
+   • GULBARGA: Yellow Alert – Light to Moderate Rain
+   • HASSAN: Gusty Winds
+   • HASSAN: Thunderstorm with Lightning
+   • HASSAN: Yellow Alert – Light to Moderate Rain
+   • HAVERI: Gusty Winds
+   • HAVERI: Thunderstorm with Lightning
+   • HAVERI: Yellow Alert – Light to Moderate Rain
+   • KODAGU: Gusty Winds
+   • KODAGU: Thunderstorm with Lightning
+   • KODAGU: Yellow Alert – Light to Moderate Rain
+   • KOLAR: Gusty Winds
+   • KOLAR: Thunderstorm with Lightning
+   • KOLAR: Yellow Alert – Light to Moderate Rain
+   • KOPPAL: Gusty Winds
+   • KOPPAL: Thunderstorm with Lightning
+   • KOPPAL: Yellow Alert – Light to Moderate Rain
+   • MANDYA: Gusty Winds
+   • MANDYA: Thunderstorm with Lightning
+   • MANDYA: Yellow Alert – Light to Moderate Rain
+   • MYSURU: Gusty Winds
+   • MYSURU: Thunderstorm with Lightning
+   • MYSURU: Yellow Alert – Light to Moderate Rain
+   • RAICHUR: Gusty Winds
+   • RAICHUR: Thunderstorm with Lightning
+   • RAICHUR: Yellow Alert – Light to Moderate Rain
+   • RAMANAGARA: Gusty Winds
+   • RAMANAGARA: Thunderstorm with Lightning
+   • RAMANAGARA: Yellow Alert – Light to Moderate Rain
+   • SHIVAMOGGA: Gusty Winds
+   • SHIVAMOGGA: Orange Alert – Heavy to Very Heavy Rain
+   • SHIVAMOGGA: Thunderstorm with Lightning
+   • SHIVAMOGGA: Yellow Alert – Heavy Rain
+   • TUMKURU: Gusty Winds
+   • TUMKURU: Thunderstorm with Lightning
+   • TUMKURU: Yellow Alert – Light to Moderate Rain
+   • UDUPI: Gusty Winds
+   • UDUPI: Orange Alert – Heavy to Very Heavy Rain
+   • UDUPI: Thunderstorm with Lightning
+   • UDUPI: Yellow Alert – Heavy Rain
+   • UTTAR-KANNAD: Gusty Winds
+   • UTTAR-KANNAD: Orange Alert – Heavy to Very Heavy Rain
+   • UTTAR-KANNAD: Thunderstorm with Lightning
+   • UTTAR-KANNAD: Yellow Alert – Heavy Rain
+   • VIJAYANAGARA: Gusty Winds
+   • VIJAYANAGARA: Thunderstorm with Lightning
+   • VIJAYANAGARA: Yellow Alert – Light to Moderate Rain
+   • YADGIR: Gusty Winds
+   • YADGIR: Yellow Alert – Light to Moderate Rain
+
+District-wise Details:
+  - BAGALKOT (NIK):
+    * 5-Day Cumulative Rain: 10.4 mm (Daily range: 1.1 – 4.0 mm/day)
+    * Temperatures: Max 29.6°C | Min 23.8°C
+    * Humidity: RH-I 81.7% | RH-II 58.4%
+    * Warning Alert: Gusty Winds, Thunderstorm with Lightning, Yellow Alert – Light to Moderate Rain
+  - BALLARY (NIK):
+    * 5-Day Cumulative Rain: 8.0 mm (Daily range: 0.6 – 3.0 mm/day)
+    * Temperatures: Max 31.7°C | Min 24.5°C
+    * Humidity: RH-I 79.5% | RH-II 50.8%
+    * Warning Alert: Gusty Winds, Thunderstorm with Lightning, Yellow Alert – Light to Moderate Rain
+  - BANGALURU-RURAL (SIK):
+    * 5-Day Cumulative Rain: 3.5 mm (Daily range: 0.4 – 1.2 mm/day)
+    * Temperatures: Max 29.1°C | Min 21.3°C
+    * Humidity: RH-I 84.4% | RH-II 52.2%
+    * Warning Alert: Gusty Winds, Thunderstorm with Lightning, Yellow Alert – Light to Moderate Rain
+  - BANGALURU-URBAN (SIK):
+    * 5-Day Cumulative Rain: 3.4 mm (Daily range: 0.3 – 1.2 mm/day)
+    * Temperatures: Max 29.2°C | Min 21.3°C
+    * Humidity: RH-I 84.3% | RH-II 51.2%
+    * Warning Alert: Gusty Winds, Thunderstorm with Lightning, Yellow Alert – Light to Moderate Rain
+  - BELAGAVI (NIK):
+    * 5-Day Cumulative Rain: 17.4 mm (Daily range: 2.3 – 6.0 mm/day)
+    * Temperatures: Max 27.2°C | Min 22.6°C
+    * Humidity: RH-I 87.8% | RH-II 69.6%
+    * Warning Alert: Gusty Winds, Thunderstorm with Lightning, Yellow Alert – Heavy Rain, Yellow Alert – Light to Moderate Rain
+  - BIDAR (NIK):
+    * 5-Day Cumulative Rain: 30.3 mm (Daily range: 1.1 – 14.2 mm/day)
+    * Temperatures: Max 29.8°C | Min 23.8°C
+    * Humidity: RH-I 84.8% | RH-II 60.5%
+    * Warning Alert: Gusty Winds, Thunderstorm with Lightning, Yellow Alert – Light to Moderate Rain
+  - BIJAPUR (NIK):
+    * 5-Day Cumulative Rain: 9.4 mm (Daily range: 0.7 – 2.9 mm/day)
+    * Temperatures: Max 31.0°C | Min 24.4°C
+    * Humidity: RH-I 79.0% | RH-II 52.5%
+    * Warning Alert: Gusty Winds, Thunderstorm with Lightning, Yellow Alert – Light to Moderate Rain
+  - CHAMARAJANAGAR (SIK):
+    * 5-Day Cumulative Rain: 4.0 mm (Daily range: 0.2 – 1.8 mm/day)
+    * Temperatures: Max 29.7°C | Min 21.7°C
+    * Humidity: RH-I 83.8% | RH-II 51.8%
+    * Warning Alert: Gusty Winds, Thunderstorm with Lightning, Yellow Alert – Light to Moderate Rain
+  - CHIKBALLAPUR (SIK):
+    * 5-Day Cumulative Rain: 2.5 mm (Daily range: 0.3 – 0.8 mm/day)
+    * Temperatures: Max 30.2°C | Min 22.1°C
+    * Humidity: RH-I 81.4% | RH-II 48.4%
+    * Warning Alert: Gusty Winds, Thunderstorm with Lightning, Yellow Alert – Light to Moderate Rain
+  - CHIKMAGALURU (Malnad):
+    * 5-Day Cumulative Rain: 54.5 mm (Daily range: 7.4 – 17.0 mm/day)
+    * Temperatures: Max 24.6°C | Min 20.8°C
+    * Humidity: RH-I 93.5% | RH-II 79.8%
+    * Warning Alert: Gusty Winds, Thunderstorm with Lightning, Yellow Alert – Heavy Rain
+  - CHITRADURGA (SIK):
+    * 5-Day Cumulative Rain: 3.3 mm (Daily range: 0.2 – 1.4 mm/day)
+    * Temperatures: Max 30.5°C | Min 23.3°C
+    * Humidity: RH-I 81.0% | RH-II 52.1%
+    * Warning Alert: Gusty Winds, Thunderstorm with Lightning, Yellow Alert – Light to Moderate Rain
+  - DAKSHIN-KANNAD (Coastal):
+    * 5-Day Cumulative Rain: 151.4 mm (Daily range: 22.0 – 45.0 mm/day)
+    * Temperatures: Max 27.9°C | Min 25.0°C
+    * Humidity: RH-I 91.8% | RH-II 82.5%
+    * Warning Alert: Gusty Winds, Orange Alert – Heavy to Very Heavy Rain, Thunderstorm with Lightning, Yellow Alert – Heavy Rain
+  - DAVANGERE (SIK):
+    * 5-Day Cumulative Rain: 15.8 mm (Daily range: 1.5 – 5.2 mm/day)
+    * Temperatures: Max 28.1°C | Min 22.5°C
+    * Humidity: RH-I 87.8% | RH-II 64.9%
+    * Warning Alert: Gusty Winds, Thunderstorm with Lightning, Yellow Alert – Light to Moderate Rain
+  - DHARWAD (NIK):
+    * 5-Day Cumulative Rain: 23.0 mm (Daily range: 2.1 – 8.7 mm/day)
+    * Temperatures: Max 27.0°C | Min 22.4°C
+    * Humidity: RH-I 91.1% | RH-II 72.1%
+    * Warning Alert: Gusty Winds, Thunderstorm with Lightning, Yellow Alert – Light to Moderate Rain
+  - GADAG (NIK):
+    * 5-Day Cumulative Rain: 13.5 mm (Daily range: 1.2 – 4.9 mm/day)
+    * Temperatures: Max 29.0°C | Min 23.1°C
+    * Humidity: RH-I 85.9% | RH-II 61.4%
+    * Warning Alert: Gusty Winds, Thunderstorm with Lightning, Yellow Alert – Light to Moderate Rain
+  - GULBARGA (NIK):
+    * 5-Day Cumulative Rain: 20.1 mm (Daily range: 0.9 – 7.2 mm/day)
+    * Temperatures: Max 31.2°C | Min 24.8°C
+    * Humidity: RH-I 79.2% | RH-II 54.0%
+    * Warning Alert: Gusty Winds, Thunderstorm with Lightning, Yellow Alert – Light to Moderate Rain
+  - HASSAN (Malnad):
+    * 5-Day Cumulative Rain: 19.8 mm (Daily range: 3.3 – 5.0 mm/day)
+    * Temperatures: Max 25.2°C | Min 20.6°C
+    * Humidity: RH-I 90.8% | RH-II 72.6%
+    * Warning Alert: Gusty Winds, Thunderstorm with Lightning, Yellow Alert – Light to Moderate Rain
+  - HAVERI (NIK):
+    * 5-Day Cumulative Rain: 21.4 mm (Daily range: 2.0 – 8.1 mm/day)
+    * Temperatures: Max 27.3°C | Min 22.5°C
+    * Humidity: RH-I 90.5% | RH-II 71.1%
+    * Warning Alert: Gusty Winds, Thunderstorm with Lightning, Yellow Alert – Light to Moderate Rain
+  - KODAGU (Malnad):
+    * 5-Day Cumulative Rain: 67.0 mm (Daily range: 8.0 – 22.0 mm/day)
+    * Temperatures: Max 23.3°C | Min 19.9°C
+    * Humidity: RH-I 97.0% | RH-II 85.6%
+    * Warning Alert: Gusty Winds, Thunderstorm with Lightning, Yellow Alert – Light to Moderate Rain
+  - KOLAR (SIK):
+    * 5-Day Cumulative Rain: 1.6 mm (Daily range: 0.2 – 0.7 mm/day)
+    * Temperatures: Max 31.6°C | Min 22.7°C
+    * Humidity: RH-I 78.1% | RH-II 44.4%
+    * Warning Alert: Gusty Winds, Thunderstorm with Lightning, Yellow Alert – Light to Moderate Rain
+  - KOPPAL (NIK):
+    * 5-Day Cumulative Rain: 9.0 mm (Daily range: 0.7 – 3.2 mm/day)
+    * Temperatures: Max 30.0°C | Min 23.6°C
+    * Humidity: RH-I 83.2% | RH-II 56.9%
+    * Warning Alert: Gusty Winds, Thunderstorm with Lightning, Yellow Alert – Light to Moderate Rain
+  - MANDYA (SIK):
+    * 5-Day Cumulative Rain: 5.0 mm (Daily range: 0.6 – 1.7 mm/day)
+    * Temperatures: Max 29.3°C | Min 21.9°C
+    * Humidity: RH-I 84.7% | RH-II 54.1%
+    * Warning Alert: Gusty Winds, Thunderstorm with Lightning, Yellow Alert – Light to Moderate Rain
+  - MYSURU (SIK):
+    * 5-Day Cumulative Rain: 9.5 mm (Daily range: 1.0 – 3.5 mm/day)
+    * Temperatures: Max 28.1°C | Min 21.4°C
+    * Humidity: RH-I 88.8% | RH-II 60.8%
+    * Warning Alert: Gusty Winds, Thunderstorm with Lightning, Yellow Alert – Light to Moderate Rain
+  - RAICHUR (NIK):
+    * 5-Day Cumulative Rain: 8.0 mm (Daily range: 0.6 – 2.9 mm/day)
+    * Temperatures: Max 32.2°C | Min 25.3°C
+    * Humidity: RH-I 75.4% | RH-II 48.7%
+    * Warning Alert: Gusty Winds, Thunderstorm with Lightning, Yellow Alert – Light to Moderate Rain
+  - RAMANAGARA (SIK):
+    * 5-Day Cumulative Rain: 4.1 mm (Daily range: 0.6 – 1.3 mm/day)
+    * Temperatures: Max 29.6°C | Min 21.8°C
+    * Humidity: RH-I 84.2% | RH-II 52.1%
+    * Warning Alert: Gusty Winds, Thunderstorm with Lightning, Yellow Alert – Light to Moderate Rain
+  - SHIVAMOGGA (Malnad):
+    * 5-Day Cumulative Rain: 46.5 mm (Daily range: 5.9 – 14.5 mm/day)
+    * Temperatures: Max 25.5°C | Min 21.9°C
+    * Humidity: RH-I 93.9% | RH-II 80.4%
+    * Warning Alert: Gusty Winds, Orange Alert – Heavy to Very Heavy Rain, Thunderstorm with Lightning, Yellow Alert – Heavy Rain
+  - TUMKURU (SIK):
+    * 5-Day Cumulative Rain: 4.4 mm (Daily range: 0.6 – 1.1 mm/day)
+    * Temperatures: Max 29.3°C | Min 22.1°C
+    * Humidity: RH-I 83.0% | RH-II 53.7%
+    * Warning Alert: Gusty Winds, Thunderstorm with Lightning, Yellow Alert – Light to Moderate Rain
+  - UDUPI (Coastal):
+    * 5-Day Cumulative Rain: 170.4 mm (Daily range: 23.6 – 47.6 mm/day)
+    * Temperatures: Max 28.2°C | Min 25.6°C
+    * Humidity: RH-I 90.4% | RH-II 81.9%
+    * Warning Alert: Gusty Winds, Orange Alert – Heavy to Very Heavy Rain, Thunderstorm with Lightning, Yellow Alert – Heavy Rain
+  - UTTAR-KANNAD (Coastal):
+    * 5-Day Cumulative Rain: 120.4 mm (Daily range: 16.5 – 31.8 mm/day)
+    * Temperatures: Max 26.8°C | Min 24.0°C
+    * Humidity: RH-I 92.6% | RH-II 83.0%
+    * Warning Alert: Gusty Winds, Orange Alert – Heavy to Very Heavy Rain, Thunderstorm with Lightning, Yellow Alert – Heavy Rain
+  - VIJAYANAGARA (NIK):
+    * 5-Day Cumulative Rain: 12.3 mm (Daily range: 1.1 – 4.0 mm/day)
+    * Temperatures: Max 29.4°C | Min 23.2°C
+    * Humidity: RH-I 85.4% | RH-II 59.5%
+    * Warning Alert: Gusty Winds, Thunderstorm with Lightning, Yellow Alert – Light to Moderate Rain
+  - YADGIR (NIK):
+    * 5-Day Cumulative Rain: 11.0 mm (Daily range: 0.9 – 3.5 mm/day)
+    * Temperatures: Max 31.9°C | Min 25.4°C
+    * Humidity: RH-I 74.9% | RH-II 49.9%
+    * Warning Alert: Gusty Winds, Yellow Alert – Light to Moderate Rain
+
+================================================================================
+
+REGION: COASTAL
+--------------------------------------------------
+• Average Cumulative Rainfall: 147.4 mm
+• District Cumulative Rain Range: 120.4 mm to 170.4 mm
+• Temperature Profile: Avg Max 27.6°C | Avg Min 24.9°C
+• Humidity Profile: Morning RH-I 91.6% | Evening RH-II 82.4%
+• Warnings & Alerts:
+   • DAKSHIN-KANNAD: Gusty Winds
+   • DAKSHIN-KANNAD: Orange Alert – Heavy to Very Heavy Rain
+   • DAKSHIN-KANNAD: Thunderstorm with Lightning
+   • DAKSHIN-KANNAD: Yellow Alert – Heavy Rain
+   • UDUPI: Gusty Winds
+   • UDUPI: Orange Alert – Heavy to Very Heavy Rain
+   • UDUPI: Thunderstorm with Lightning
+   • UDUPI: Yellow Alert – Heavy Rain
+   • UTTAR-KANNAD: Gusty Winds
+   • UTTAR-KANNAD: Orange Alert – Heavy to Very Heavy Rain
+   • UTTAR-KANNAD: Thunderstorm with Lightning
+   • UTTAR-KANNAD: Yellow Alert – Heavy Rain
+
+District-wise Details:
+  - DAKSHIN-KANNAD (Coastal):
+    * 5-Day Cumulative Rain: 151.4 mm (Daily range: 22.0 – 45.0 mm/day)
+    * Temperatures: Max 27.9°C | Min 25.0°C
+    * Humidity: RH-I 91.8% | RH-II 82.5%
+    * Warning Alert: Gusty Winds, Orange Alert – Heavy to Very Heavy Rain, Thunderstorm with Lightning, Yellow Alert – Heavy Rain
+  - UDUPI (Coastal):
+    * 5-Day Cumulative Rain: 170.4 mm (Daily range: 23.6 – 47.6 mm/day)
+    * Temperatures: Max 28.2°C | Min 25.6°C
+    * Humidity: RH-I 90.4% | RH-II 81.9%
+    * Warning Alert: Gusty Winds, Orange Alert – Heavy to Very Heavy Rain, Thunderstorm with Lightning, Yellow Alert – Heavy Rain
+  - UTTAR-KANNAD (Coastal):
+    * 5-Day Cumulative Rain: 120.4 mm (Daily range: 16.5 – 31.8 mm/day)
+    * Temperatures: Max 26.8°C | Min 24.0°C
+    * Humidity: RH-I 92.6% | RH-II 83.0%
+    * Warning Alert: Gusty Winds, Orange Alert – Heavy to Very Heavy Rain, Thunderstorm with Lightning, Yellow Alert – Heavy Rain
+
+================================================================================
+
+REGION: NIK
+--------------------------------------------------
+• Average Cumulative Rainfall: 14.9 mm
+• District Cumulative Rain Range: 8.0 mm to 30.3 mm
+• Temperature Profile: Avg Max 29.8°C | Avg Min 23.8°C
+• Humidity Profile: Morning RH-I 83.0% | Evening RH-II 58.9%
+• Warnings & Alerts:
+   • BAGALKOT: Gusty Winds
+   • BAGALKOT: Thunderstorm with Lightning
+   • BAGALKOT: Yellow Alert – Light to Moderate Rain
+   • BALLARY: Gusty Winds
+   • BALLARY: Thunderstorm with Lightning
+   • BALLARY: Yellow Alert – Light to Moderate Rain
+   • BELAGAVI: Gusty Winds
+   • BELAGAVI: Thunderstorm with Lightning
+   • BELAGAVI: Yellow Alert – Heavy Rain
+   • BELAGAVI: Yellow Alert – Light to Moderate Rain
+   • BIDAR: Gusty Winds
+   • BIDAR: Thunderstorm with Lightning
+   • BIDAR: Yellow Alert – Light to Moderate Rain
+   • BIJAPUR: Gusty Winds
+   • BIJAPUR: Thunderstorm with Lightning
+   • BIJAPUR: Yellow Alert – Light to Moderate Rain
+   • DHARWAD: Gusty Winds
+   • DHARWAD: Thunderstorm with Lightning
+   • DHARWAD: Yellow Alert – Light to Moderate Rain
+   • GADAG: Gusty Winds
+   • GADAG: Thunderstorm with Lightning
+   • GADAG: Yellow Alert – Light to Moderate Rain
+   • GULBARGA: Gusty Winds
+   • GULBARGA: Thunderstorm with Lightning
+   • GULBARGA: Yellow Alert – Light to Moderate Rain
+   • HAVERI: Gusty Winds
+   • HAVERI: Thunderstorm with Lightning
+   • HAVERI: Yellow Alert – Light to Moderate Rain
+   • KOPPAL: Gusty Winds
+   • KOPPAL: Thunderstorm with Lightning
+   • KOPPAL: Yellow Alert – Light to Moderate Rain
+   • RAICHUR: Gusty Winds
+   • RAICHUR: Thunderstorm with Lightning
+   • RAICHUR: Yellow Alert – Light to Moderate Rain
+   • VIJAYANAGARA: Gusty Winds
+   • VIJAYANAGARA: Thunderstorm with Lightning
+   • VIJAYANAGARA: Yellow Alert – Light to Moderate Rain
+   • YADGIR: Gusty Winds
+   • YADGIR: Yellow Alert – Light to Moderate Rain
+
+District-wise Details:
+  - BAGALKOT (NIK):
+    * 5-Day Cumulative Rain: 10.4 mm (Daily range: 1.1 – 4.0 mm/day)
+    * Temperatures: Max 29.6°C | Min 23.8°C
+    * Humidity: RH-I 81.7% | RH-II 58.4%
+    * Warning Alert: Gusty Winds, Thunderstorm with Lightning, Yellow Alert – Light to Moderate Rain
+  - BALLARY (NIK):
+    * 5-Day Cumulative Rain: 8.0 mm (Daily range: 0.6 – 3.0 mm/day)
+    * Temperatures: Max 31.7°C | Min 24.5°C
+    * Humidity: RH-I 79.5% | RH-II 50.8%
+    * Warning Alert: Gusty Winds, Thunderstorm with Lightning, Yellow Alert – Light to Moderate Rain
+  - BELAGAVI (NIK):
+    * 5-Day Cumulative Rain: 17.4 mm (Daily range: 2.3 – 6.0 mm/day)
+    * Temperatures: Max 27.2°C | Min 22.6°C
+    * Humidity: RH-I 87.8% | RH-II 69.6%
+    * Warning Alert: Gusty Winds, Thunderstorm with Lightning, Yellow Alert – Heavy Rain, Yellow Alert – Light to Moderate Rain
+  - BIDAR (NIK):
+    * 5-Day Cumulative Rain: 30.3 mm (Daily range: 1.1 – 14.2 mm/day)
+    * Temperatures: Max 29.8°C | Min 23.8°C
+    * Humidity: RH-I 84.8% | RH-II 60.5%
+    * Warning Alert: Gusty Winds, Thunderstorm with Lightning, Yellow Alert – Light to Moderate Rain
+  - BIJAPUR (NIK):
+    * 5-Day Cumulative Rain: 9.4 mm (Daily range: 0.7 – 2.9 mm/day)
+    * Temperatures: Max 31.0°C | Min 24.4°C
+    * Humidity: RH-I 79.0% | RH-II 52.5%
+    * Warning Alert: Gusty Winds, Thunderstorm with Lightning, Yellow Alert – Light to Moderate Rain
+  - DHARWAD (NIK):
+    * 5-Day Cumulative Rain: 23.0 mm (Daily range: 2.1 – 8.7 mm/day)
+    * Temperatures: Max 27.0°C | Min 22.4°C
+    * Humidity: RH-I 91.1% | RH-II 72.1%
+    * Warning Alert: Gusty Winds, Thunderstorm with Lightning, Yellow Alert – Light to Moderate Rain
+  - GADAG (NIK):
+    * 5-Day Cumulative Rain: 13.5 mm (Daily range: 1.2 – 4.9 mm/day)
+    * Temperatures: Max 29.0°C | Min 23.1°C
+    * Humidity: RH-I 85.9% | RH-II 61.4%
+    * Warning Alert: Gusty Winds, Thunderstorm with Lightning, Yellow Alert – Light to Moderate Rain
+  - GULBARGA (NIK):
+    * 5-Day Cumulative Rain: 20.1 mm (Daily range: 0.9 – 7.2 mm/day)
+    * Temperatures: Max 31.2°C | Min 24.8°C
+    * Humidity: RH-I 79.2% | RH-II 54.0%
+    * Warning Alert: Gusty Winds, Thunderstorm with Lightning, Yellow Alert – Light to Moderate Rain
+  - HAVERI (NIK):
+    * 5-Day Cumulative Rain: 21.4 mm (Daily range: 2.0 – 8.1 mm/day)
+    * Temperatures: Max 27.3°C | Min 22.5°C
+    * Humidity: RH-I 90.5% | RH-II 71.1%
+    * Warning Alert: Gusty Winds, Thunderstorm with Lightning, Yellow Alert – Light to Moderate Rain
+  - KOPPAL (NIK):
+    * 5-Day Cumulative Rain: 9.0 mm (Daily range: 0.7 – 3.2 mm/day)
+    * Temperatures: Max 30.0°C | Min 23.6°C
+    * Humidity: RH-I 83.2% | RH-II 56.9%
+    * Warning Alert: Gusty Winds, Thunderstorm with Lightning, Yellow Alert – Light to Moderate Rain
+  - RAICHUR (NIK):
+    * 5-Day Cumulative Rain: 8.0 mm (Daily range: 0.6 – 2.9 mm/day)
+    * Temperatures: Max 32.2°C | Min 25.3°C
+    * Humidity: RH-I 75.4% | RH-II 48.7%
+    * Warning Alert: Gusty Winds, Thunderstorm with Lightning, Yellow Alert – Light to Moderate Rain
+  - VIJAYANAGARA (NIK):
+    * 5-Day Cumulative Rain: 12.3 mm (Daily range: 1.1 – 4.0 mm/day)
+    * Temperatures: Max 29.4°C | Min 23.2°C
+    * Humidity: RH-I 85.4% | RH-II 59.5%
+    * Warning Alert: Gusty Winds, Thunderstorm with Lightning, Yellow Alert – Light to Moderate Rain
+  - YADGIR (NIK):
+    * 5-Day Cumulative Rain: 11.0 mm (Daily range: 0.9 – 3.5 mm/day)
+    * Temperatures: Max 31.9°C | Min 25.4°C
+    * Humidity: RH-I 74.9% | RH-II 49.9%
+    * Warning Alert: Gusty Winds, Yellow Alert – Light to Moderate Rain
+
+================================================================================
+
+REGION: SIK
+--------------------------------------------------
+• Average Cumulative Rainfall: 5.2 mm
+• District Cumulative Rain Range: 1.6 mm to 15.8 mm
+• Temperature Profile: Avg Max 29.5°C | Avg Min 22.0°C
+• Humidity Profile: Morning RH-I 83.8% | Evening RH-II 53.3%
+• Warnings & Alerts:
+   • BANGALURU-RURAL: Gusty Winds
+   • BANGALURU-RURAL: Thunderstorm with Lightning
+   • BANGALURU-RURAL: Yellow Alert – Light to Moderate Rain
+   • BANGALURU-URBAN: Gusty Winds
+   • BANGALURU-URBAN: Thunderstorm with Lightning
+   • BANGALURU-URBAN: Yellow Alert – Light to Moderate Rain
+   • CHAMARAJANAGAR: Gusty Winds
+   • CHAMARAJANAGAR: Thunderstorm with Lightning
+   • CHAMARAJANAGAR: Yellow Alert – Light to Moderate Rain
+   • CHIKBALLAPUR: Gusty Winds
+   • CHIKBALLAPUR: Thunderstorm with Lightning
+   • CHIKBALLAPUR: Yellow Alert – Light to Moderate Rain
+   • CHITRADURGA: Gusty Winds
+   • CHITRADURGA: Thunderstorm with Lightning
+   • CHITRADURGA: Yellow Alert – Light to Moderate Rain
+   • DAVANGERE: Gusty Winds
+   • DAVANGERE: Thunderstorm with Lightning
+   • DAVANGERE: Yellow Alert – Light to Moderate Rain
+   • KOLAR: Gusty Winds
+   • KOLAR: Thunderstorm with Lightning
+   • KOLAR: Yellow Alert – Light to Moderate Rain
+   • MANDYA: Gusty Winds
+   • MANDYA: Thunderstorm with Lightning
+   • MANDYA: Yellow Alert – Light to Moderate Rain
+   • MYSURU: Gusty Winds
+   • MYSURU: Thunderstorm with Lightning
+   • MYSURU: Yellow Alert – Light to Moderate Rain
+   • RAMANAGARA: Gusty Winds
+   • RAMANAGARA: Thunderstorm with Lightning
+   • RAMANAGARA: Yellow Alert – Light to Moderate Rain
+   • TUMKURU: Gusty Winds
+   • TUMKURU: Thunderstorm with Lightning
+   • TUMKURU: Yellow Alert – Light to Moderate Rain
+
+District-wise Details:
+  - BANGALURU-RURAL (SIK):
+    * 5-Day Cumulative Rain: 3.5 mm (Daily range: 0.4 – 1.2 mm/day)
+    * Temperatures: Max 29.1°C | Min 21.3°C
+    * Humidity: RH-I 84.4% | RH-II 52.2%
+    * Warning Alert: Gusty Winds, Thunderstorm with Lightning, Yellow Alert – Light to Moderate Rain
+  - BANGALURU-URBAN (SIK):
+    * 5-Day Cumulative Rain: 3.4 mm (Daily range: 0.3 – 1.2 mm/day)
+    * Temperatures: Max 29.2°C | Min 21.3°C
+    * Humidity: RH-I 84.3% | RH-II 51.2%
+    * Warning Alert: Gusty Winds, Thunderstorm with Lightning, Yellow Alert – Light to Moderate Rain
+  - CHAMARAJANAGAR (SIK):
+    * 5-Day Cumulative Rain: 4.0 mm (Daily range: 0.2 – 1.8 mm/day)
+    * Temperatures: Max 29.7°C | Min 21.7°C
+    * Humidity: RH-I 83.8% | RH-II 51.8%
+    * Warning Alert: Gusty Winds, Thunderstorm with Lightning, Yellow Alert – Light to Moderate Rain
+  - CHIKBALLAPUR (SIK):
+    * 5-Day Cumulative Rain: 2.5 mm (Daily range: 0.3 – 0.8 mm/day)
+    * Temperatures: Max 30.2°C | Min 22.1°C
+    * Humidity: RH-I 81.4% | RH-II 48.4%
+    * Warning Alert: Gusty Winds, Thunderstorm with Lightning, Yellow Alert – Light to Moderate Rain
+  - CHITRADURGA (SIK):
+    * 5-Day Cumulative Rain: 3.3 mm (Daily range: 0.2 – 1.4 mm/day)
+    * Temperatures: Max 30.5°C | Min 23.3°C
+    * Humidity: RH-I 81.0% | RH-II 52.1%
+    * Warning Alert: Gusty Winds, Thunderstorm with Lightning, Yellow Alert – Light to Moderate Rain
+  - DAVANGERE (SIK):
+    * 5-Day Cumulative Rain: 15.8 mm (Daily range: 1.5 – 5.2 mm/day)
+    * Temperatures: Max 28.1°C | Min 22.5°C
+    * Humidity: RH-I 87.8% | RH-II 64.9%
+    * Warning Alert: Gusty Winds, Thunderstorm with Lightning, Yellow Alert – Light to Moderate Rain
+  - KOLAR (SIK):
+    * 5-Day Cumulative Rain: 1.6 mm (Daily range: 0.2 – 0.7 mm/day)
+    * Temperatures: Max 31.6°C | Min 22.7°C
+    * Humidity: RH-I 78.1% | RH-II 44.4%
+    * Warning Alert: Gusty Winds, Thunderstorm with Lightning, Yellow Alert – Light to Moderate Rain
+  - MANDYA (SIK):
+    * 5-Day Cumulative Rain: 5.0 mm (Daily range: 0.6 – 1.7 mm/day)
+    * Temperatures: Max 29.3°C | Min 21.9°C
+    * Humidity: RH-I 84.7% | RH-II 54.1%
+    * Warning Alert: Gusty Winds, Thunderstorm with Lightning, Yellow Alert – Light to Moderate Rain
+  - MYSURU (SIK):
+    * 5-Day Cumulative Rain: 9.5 mm (Daily range: 1.0 – 3.5 mm/day)
+    * Temperatures: Max 28.1°C | Min 21.4°C
+    * Humidity: RH-I 88.8% | RH-II 60.8%
+    * Warning Alert: Gusty Winds, Thunderstorm with Lightning, Yellow Alert – Light to Moderate Rain
+  - RAMANAGARA (SIK):
+    * 5-Day Cumulative Rain: 4.1 mm (Daily range: 0.6 – 1.3 mm/day)
+    * Temperatures: Max 29.6°C | Min 21.8°C
+    * Humidity: RH-I 84.2% | RH-II 52.1%
+    * Warning Alert: Gusty Winds, Thunderstorm with Lightning, Yellow Alert – Light to Moderate Rain
+  - TUMKURU (SIK):
+    * 5-Day Cumulative Rain: 4.4 mm (Daily range: 0.6 – 1.1 mm/day)
+    * Temperatures: Max 29.3°C | Min 22.1°C
+    * Humidity: RH-I 83.0% | RH-II 53.7%
+    * Warning Alert: Gusty Winds, Thunderstorm with Lightning, Yellow Alert – Light to Moderate Rain
+
+================================================================================
+
+REGION: MALNAD
+--------------------------------------------------
+• Average Cumulative Rainfall: 46.9 mm
+• District Cumulative Rain Range: 19.8 mm to 67.0 mm
+• Temperature Profile: Avg Max 24.7°C | Avg Min 20.8°C
+• Humidity Profile: Morning RH-I 93.8% | Evening RH-II 79.6%
+• Warnings & Alerts:
+   • CHIKMAGALURU: Gusty Winds
+   • CHIKMAGALURU: Thunderstorm with Lightning
+   • CHIKMAGALURU: Yellow Alert – Heavy Rain
+   • HASSAN: Gusty Winds
+   • HASSAN: Thunderstorm with Lightning
+   • HASSAN: Yellow Alert – Light to Moderate Rain
+   • KODAGU: Gusty Winds
+   • KODAGU: Thunderstorm with Lightning
+   • KODAGU: Yellow Alert – Light to Moderate Rain
+   • SHIVAMOGGA: Gusty Winds
+   • SHIVAMOGGA: Orange Alert – Heavy to Very Heavy Rain
+   • SHIVAMOGGA: Thunderstorm with Lightning
+   • SHIVAMOGGA: Yellow Alert – Heavy Rain
+
+District-wise Details:
+  - CHIKMAGALURU (Malnad):
+    * 5-Day Cumulative Rain: 54.5 mm (Daily range: 7.4 – 17.0 mm/day)
+    * Temperatures: Max 24.6°C | Min 20.8°C
+    * Humidity: RH-I 93.5% | RH-II 79.8%
+    * Warning Alert: Gusty Winds, Thunderstorm with Lightning, Yellow Alert – Heavy Rain
+  - HASSAN (Malnad):
+    * 5-Day Cumulative Rain: 19.8 mm (Daily range: 3.3 – 5.0 mm/day)
+    * Temperatures: Max 25.2°C | Min 20.6°C
+    * Humidity: RH-I 90.8% | RH-II 72.6%
+    * Warning Alert: Gusty Winds, Thunderstorm with Lightning, Yellow Alert – Light to Moderate Rain
+  - KODAGU (Malnad):
+    * 5-Day Cumulative Rain: 67.0 mm (Daily range: 8.0 – 22.0 mm/day)
+    * Temperatures: Max 23.3°C | Min 19.9°C
+    * Humidity: RH-I 97.0% | RH-II 85.6%
+    * Warning Alert: Gusty Winds, Thunderstorm with Lightning, Yellow Alert – Light to Moderate Rain
+  - SHIVAMOGGA (Malnad):
+    * 5-Day Cumulative Rain: 46.5 mm (Daily range: 5.9 – 14.5 mm/day)
+    * Temperatures: Max 25.5°C | Min 21.9°C
+    * Humidity: RH-I 93.9% | RH-II 80.4%
+    * Warning Alert: Gusty Winds, Orange Alert – Heavy to Very Heavy Rain, Thunderstorm with Lightning, Yellow Alert – Heavy Rain
+
+================================================================================

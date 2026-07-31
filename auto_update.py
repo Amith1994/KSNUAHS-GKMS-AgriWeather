@@ -4,6 +4,7 @@ import sys
 import datetime
 import json
 import webbrowser
+import subprocess
 import pandas as pd
 
 def excel_date_to_str(val):
@@ -336,6 +337,39 @@ def is_valid_weather_excel(excel_path):
     except Exception:
         return False
 
+def sync_to_github(base_dir):
+    print("\n[INFO] Syncing forecast updates to GitHub account...")
+    try:
+        # Check git status
+        res = subprocess.run(["git", "status", "--porcelain"], cwd=base_dir, capture_output=True, text=True)
+        if not res.stdout.strip():
+            print("[INFO] No file changes detected. GitHub is already up to date.")
+            return
+
+        print("[INFO] Staging updated files for Git...")
+        subprocess.run(["git", "add", "."], cwd=base_dir, check=True)
+
+        timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
+        commit_msg = f"Auto-update IMD weather forecast data ({timestamp})"
+        print(f"[INFO] Committing changes: '{commit_msg}'...")
+        subprocess.run(["git", "commit", "-m", commit_msg], cwd=base_dir, check=True)
+
+        print("[INFO] Pushing updates to GitHub (origin main)...")
+        push_res = subprocess.run(["git", "push", "origin", "main"], cwd=base_dir, capture_output=True, text=True)
+        
+        if push_res.returncode == 0:
+            print("[SUCCESS] Successfully updated and pushed all changes to your GitHub account!")
+        else:
+            push_res2 = subprocess.run(["git", "push"], cwd=base_dir, capture_output=True, text=True)
+            if push_res2.returncode == 0:
+                print("[SUCCESS] Successfully updated and pushed all changes to your GitHub account!")
+            else:
+                err = push_res.stderr.strip() or push_res2.stderr.strip()
+                print(f"[WARNING] Could not push to GitHub. Error details:\n{err}")
+
+    except Exception as e:
+        print(f"[WARNING] GitHub sync encountered an error: {e}")
+
 def main():
     base_dir = os.path.dirname(os.path.abspath(__file__))
     
@@ -369,6 +403,9 @@ def main():
         return
 
     update_html_files(weather_data, dates_list, base_dir)
+    
+    # Sync updated files to GitHub repository
+    sync_to_github(base_dir)
 
     target_url = os.path.join(base_dir, '1st_updated.html')
     print(f"[INFO] Launching updated forecast app in browser...")
