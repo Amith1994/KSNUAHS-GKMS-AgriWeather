@@ -412,8 +412,9 @@ def main():
 
     update_html_files(weather_data, dates_list, base_dir)
     
-    # Sync updated files to GitHub repository
-    sync_to_github(base_dir)
+    # Sync updated files to GitHub repository if prompt is not handled externally (e.g. by PowerShell)
+    if "--skip-prompt" not in sys.argv:
+        sync_to_github(base_dir)
 
     target_url = os.path.join(base_dir, '1st_updated.html')
     print(f"[INFO] Launching updated forecast app in browser...")
