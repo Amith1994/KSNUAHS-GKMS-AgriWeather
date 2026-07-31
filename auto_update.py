@@ -338,12 +338,20 @@ def is_valid_weather_excel(excel_path):
         return False
 
 def sync_to_github(base_dir):
-    print("\n[INFO] Syncing forecast updates to GitHub account...")
+    print("\n[INFO] Checking Git status...")
     try:
         # Check git status
         res = subprocess.run(["git", "status", "--porcelain"], cwd=base_dir, capture_output=True, text=True)
         if not res.stdout.strip():
             print("[INFO] No file changes detected. GitHub is already up to date.")
+            return
+
+        print("\n-------------------------------------------------------")
+        user_choice = input("Local HTML files updated! Do you want to update & push to GitHub account? (Y/N): ").strip().lower()
+        print("-------------------------------------------------------")
+
+        if user_choice not in ['y', 'yes']:
+            print("[INFO] GitHub push skipped by user. Local files updated successfully!")
             return
 
         print("[INFO] Staging updated files for Git...")
